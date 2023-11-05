@@ -1,0 +1,32 @@
+﻿<Window x:Class="RollerDerby.LeaguesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RollerDerby"
+        mc:Ignorable="d"
+        Title="Leagues" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150px" />
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="150px"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnCreateLeague" Content="Create League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="1" Grid.Column="1" Grid.RowSpan="1" Padding="20px 0px" Click="btnCreateLeague_Click" ></Button>
+        <Button x:Name="btnViewLeague" Content="View League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="1" Grid.Column="2" Grid.RowSpan="1" Padding="20px 0px" Click="btnViewLeague_Click" ></Button>
+        <Button x:Name="btnUpdateLeague" Content="Update League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="3" Grid.Column="1" Grid.RowSpan="1" Padding="20px 0px" Click="btnUpdateLeague_Click"></Button>
+        <Button x:Name="btnDeleteLeague" Content="Delete League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="3" Grid.Column="2" Grid.RowSpan="1" Padding="20px 0px" Click="btnDeleteLeague_Click" ></Button>
+
+
+    </Grid>
+</Window>
