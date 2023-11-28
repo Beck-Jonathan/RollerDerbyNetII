@@ -5,10 +5,10 @@ namespace LogicLayer
 {
     public interface ILeagueManager
     {
-        bool createLeague(string LeagueID, string Region, string Gender);
-        League getLeagueByPrimaryKey(string LeagueID);
+        bool createLeague(League league);
+        League getLeagueByPrimaryKey(string leagueID);
         List<League> getAllLeague();
-        int updateLeague(string oldLeagueID, string oldRegion, string oldGender, string newLeagueID, string newregion, string newGender);
-        int deleteLeague(string LeagueID);
+        int updateLeague(League oldLeague, League newLeague);
+        int deleteLeague(League league);
     }
 }

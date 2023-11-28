@@ -44,9 +44,13 @@ namespace UnitTestProject1
             string inputId = "test4";
             string inputRegion = "Ohio";
             string inputGender = "mixed";
+            League newLeague = new League();
+            newLeague.Region = inputRegion;
+            newLeague.Gender = inputGender;
+            newLeague.LeagueID = inputId;
 
             //act
-            _leagueManager.createLeague(inputId, inputRegion, inputGender);
+            _leagueManager.createLeague(newLeague);
             resultID = _leagueManager.getLeagueByPrimaryKey(inputId).LeagueID;
             resultRegion = _leagueManager.getLeagueByPrimaryKey(inputId).Region;
             resultGender = _leagueManager.getLeagueByPrimaryKey(inputId).Gender;
@@ -82,9 +86,17 @@ namespace UnitTestProject1
             string inputoldId = "Fake1";
             string inputoldRegion = "Midwest";
             string inputOldGender = "Female";
+            League oldLeague = new League();
+            oldLeague.Gender = inputOldGender;
+            oldLeague.Region = inputoldRegion;
+            oldLeague.LeagueID = inputoldId;
             string inputNewID = inputoldId;
             string inputNewRegion = "Texas";
             string inputNewGender = "Mixed";
+            League newLeague = new League();
+            newLeague.Gender = inputNewGender;
+            newLeague.Region = inputNewRegion;
+            newLeague.LeagueID = inputNewID;
 
             string resultID = "";
             string resultRegion = "";
@@ -95,7 +107,7 @@ namespace UnitTestProject1
             string ExpectedGender = "Mixed";
 
             //act
-            _leagueManager.updateLeague(inputoldId, inputoldRegion, inputOldGender, inputNewID, inputNewRegion, inputNewGender);
+            _leagueManager.updateLeague(oldLeague, newLeague);
 
 
 
@@ -117,11 +129,14 @@ namespace UnitTestProject1
             //arrange
             int expectedcount = 2;
             int acutalCount = 0;
+
             String LeagueToDelete = "Fake1";
+            League league = new League();
+            league.LeagueID = LeagueToDelete;
 
 
             //act
-            _leagueManager.deleteLeague(LeagueToDelete);
+            _leagueManager.deleteLeague(league);
             acutalCount = _leagueManager.getAllLeague().Count;
 
 
@@ -136,17 +151,24 @@ namespace UnitTestProject1
         {
             //arrange
             string inputoldId = "Fake4";
-            string inputoldRegion = "Oregon";
+            string inputoldRegion = "Midwest";
             string inputOldGender = "Female";
-            string inputNewID = "Fake4";
+            League oldLeague = new League();
+            oldLeague.Gender = inputOldGender;
+            oldLeague.Region = inputoldRegion;
+            oldLeague.LeagueID = inputoldId;
+            string inputNewID = inputoldId;
             string inputNewRegion = "Texas";
             string inputNewGender = "Mixed";
+            League newLeague = new League();
+            newLeague.Gender = inputNewGender;
+            newLeague.Region = inputNewRegion;
+            newLeague.LeagueID = inputNewID;
 
 
 
             //act
-            _leagueManager.updateLeague(inputoldId, inputoldRegion, inputOldGender,
-                        inputNewID, inputNewRegion, inputNewGender);
+            _leagueManager.updateLeague(oldLeague, newLeague);
 
             //assert - nothing to do
 
@@ -159,10 +181,12 @@ namespace UnitTestProject1
             int expectedcount = 3;
             int acutalCount = 0;
             String LeagueToDelete = "Fake4";
+            League league = new League();
+            league.LeagueID = LeagueToDelete;
 
 
             //act
-            _leagueManager.deleteLeague(LeagueToDelete);
+            _leagueManager.deleteLeague(league);
             acutalCount = _leagueManager.getAllLeague().Count;
 
 

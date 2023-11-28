@@ -10,9 +10,8 @@ namespace LogicLayer
         List<LocationVM> SelectLocationsByLeague(League league);
         LocationVM SelectLocationByLocationID(String LocaitonID);
 
-        bool AddLocation(string LocaitonID, string LeagueID, string ContactPhone, string City, string State, string ZipCode);
-        int updateLocation(string oldLocaitonID, string oldLeagueID, string oldContactPhone, string oldCity, string oldState, string oldZipCode,
-                            string newLocaitonID, string newLeagueID, string newContactPhone, string newCity, string newState, string newZipCode);
+        bool AddLocation(Location location);
+        int updateLocation(Location oldLocation, Location newLocaiton);
         int deleteLocation(string LocationID);
     }
 }

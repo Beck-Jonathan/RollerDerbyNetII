@@ -22,12 +22,12 @@ namespace LogicLayer
             _locationAccessor = locationAccessor;
 
         }
-        public bool AddLocation(string LocaitonID, string LeagueID, string ContactPhone, string City, string State, string ZipCode)
+        public bool AddLocation(Location location)
         {
             bool result = false;
             try
             {
-                result = (1 == _locationAccessor.AddLocation(LocaitonID, LeagueID, ContactPhone, City, State, ZipCode));
+                result = (1 == _locationAccessor.AddLocation(location));
             }
             catch (Exception ex)
             {
@@ -88,13 +88,13 @@ namespace LogicLayer
             throw new NotImplementedException();
         }
 
-        public int updateLocation(string oldLocaitonID, string oldLeagueID, string oldContactPhone, string oldCity, string oldState, string oldZipCode, string newLocaitonID, string newLeagueID, string newContactPhone, string newCity, string newState, string newZipCode)
+        public int updateLocation(Location oldLocation, Location newLocation)
         {
             int result = 0;
 
             try
             {
-                result = _locationAccessor.updateLocation(oldLocaitonID, oldLeagueID, oldContactPhone, oldCity, oldState, oldZipCode, newLeagueID, newContactPhone, newCity, newState, newZipCode);
+                result = _locationAccessor.updateLocation(oldLocation, newLocation);
             }
             catch (Exception ex)
             {

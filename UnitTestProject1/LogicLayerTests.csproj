@@ -53,6 +53,7 @@
     <Compile Include="LocationManagerTests.cs" />
     <Compile Include="SkaterManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkaterTeamApplicationTests.cs" />
     <Compile Include="TeamManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>

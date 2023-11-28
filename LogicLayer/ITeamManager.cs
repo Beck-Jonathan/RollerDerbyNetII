@@ -5,10 +5,10 @@ namespace LogicLayer
 {
     public interface ITeamManager
     {
-        bool addTeam(string TeamId, string LeagueID,decimal MonthlyDue, string City, string State, string Zip);
+        bool addTeam(Team team);
         Team getTeamByPrimaryKey(string TeamID);
         List<Team> getAllTeam();
-        int editTeam(string oldTeamId, string oldLeagueID, decimal oldMonthlyDue, string oldCity, string oldState, string oldZip, string newTeamId, string newLeagueID, decimal newMonthlyDue, string newCity, string newState, string newZip);
+        int editTeam(Team _oldTeam, Team _newTeam);
         int purgeTeam(string TeamID);
     }
 

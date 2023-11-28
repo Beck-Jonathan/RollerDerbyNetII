@@ -5,10 +5,10 @@ namespace DataAccessInterfaces
 {
     public interface ITeamAccessor
     {
-        int insertTeam(string TeamId, string LeagueID, decimal MonthlyDue, string City, string State, string Zip);
+        int insertTeam(Team team);
         Team selectTeamByPrimaryKey(string TeamID);
         List<Team> selectAllTeam();
-        int updateTeam(string oldTeamId, string oldLeagueID, decimal oldMonthlyDue, string oldCity, string oldState, string oldZip, string newLeagueID, decimal newMonthlyDue, string newCity, string newState, string newZip);
+        int updateTeam(Team oldTeam, Team newTeam);
         int deleteTeam(string TeamID);
     }
 }

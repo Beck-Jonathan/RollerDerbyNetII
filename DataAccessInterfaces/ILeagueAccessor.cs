@@ -9,6 +9,6 @@ namespace DataAccessInterfaces
         League selectLeagueByPrimaryKey(string LeagueID);
         List<League> selectAllLeague();
         int updateLeague(string oldLeagueID, string oldRegion, string oldGender, string newRegion, string newGender);
-        int deleteLeague(string LeagueID);
+        int deleteLeague(League league);
     }
 }

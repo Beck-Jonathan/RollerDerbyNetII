@@ -92,13 +92,13 @@ namespace DataAccessFakes
 
         }
 
-        public int deleteLeague(string LeagueID)
+        public int deleteLeague(League league)
         {
             int result = 0;
             int IndexToDelete = fakeLeagues.Count + 1;
             for (int i = 0; i < fakeLeagues.Count; i++)
             {
-                if (fakeLeagues[i].LeagueID == LeagueID)
+                if (fakeLeagues[i].LeagueID == league.LeagueID)
                 {
                     IndexToDelete = i;
                     result = 1;

@@ -9,11 +9,13 @@ namespace DataObjects
     {
         public string TeamId { set; get; }
         public string LeagueID { set; get; }
-        public string TeamName { set; get; }
+
         public decimal MonthlyDue { set; get; }
         public string City { set; get; }
         public string State { set; get; }
         public string Zip { set; get; }
+
+        public bool isActive { set; get; }
 
     }
 

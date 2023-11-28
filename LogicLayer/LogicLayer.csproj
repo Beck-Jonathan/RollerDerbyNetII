@@ -53,12 +53,14 @@
     <Compile Include="IRoleMananger.cs" />
     <Compile Include="ISkaterPracticeLineManager.cs" />
     <Compile Include="ISkaterRoleLineManager.cs" />
+    <Compile Include="ISkaterTeamApplicationManager.cs" />
     <Compile Include="ITeamManager.cs" />
     <Compile Include="LeagueManager.cs" />
     <Compile Include="LocationManager.cs" />
     <Compile Include="SkaterManager.cs" />
     <Compile Include="ISkaterManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkaterteamApplicationManager.cs" />
     <Compile Include="TeamManager.cs" />
   </ItemGroup>
   <ItemGroup>

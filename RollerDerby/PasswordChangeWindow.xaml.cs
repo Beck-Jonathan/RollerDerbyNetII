@@ -17,6 +17,7 @@ namespace RollerDerby
             _sm = skatermanager;
             _skt = loggedinSkater;
 
+
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
@@ -31,6 +32,9 @@ namespace RollerDerby
                 {
                     MessageBox.Show("You can not set this as your password");
                     this.DialogResult = false;
+                    return;
+
+
                 }
                 if (newPW1 == oldPW) { MessageBox.Show("You can not reuse your old password"); }
 
@@ -55,6 +59,11 @@ namespace RollerDerby
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnSubmit.IsDefault = true;
         }
     }
 }

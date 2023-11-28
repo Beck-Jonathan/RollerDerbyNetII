@@ -55,43 +55,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddLeague.xaml.cs">
-      <DependentUpon>AddLeague.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddLocaton.xaml.cs">
-      <DependentUpon>AddLocaton.xaml</DependentUpon>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Add_Skater.xaml.cs">
       <DependentUpon>Add_Skater.xaml</DependentUpon>
     </Compile>
-    <Compile Include="deleteLocation.xaml.cs">
-      <DependentUpon>deleteLocation.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LocationsWindow.xaml.cs">
       <DependentUpon>LocationsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DeleteLeague.xaml.cs">
-      <DependentUpon>DeleteLeague.xaml</DependentUpon>
     </Compile>
     <Compile Include="LeaguesWindow.xaml.cs">
       <DependentUpon>LeaguesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeamAddEditDelete.xaml.cs">
+      <DependentUpon>TeamAddEditDelete.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeamsWindow.xaml.cs">
       <DependentUpon>TeamsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="testWindow.xaml.cs">
+      <DependentUpon>testWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateLeague.xaml.cs">
       <DependentUpon>UpdateLeague.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateLocation.xaml.cs">
+      <DependentUpon>UpdateLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="WFTDADataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WFTDADataSet.xsd</DependentUpon>
     </Compile>
-    <Page Include="AddLeague.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddLocaton.xaml">
+    <Page Include="About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,15 +95,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="deleteLocation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LocationsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DeleteLeague.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,11 +119,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TeamAddEditDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TeamsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="testWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateLeague.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

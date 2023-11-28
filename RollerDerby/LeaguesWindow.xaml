@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RollerDerby"
         mc:Ignorable="d"
-        Title="Leagues" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="Leagues" Height="450" Width="800" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" MouseDoubleClick="Window_MouseDoubleClick">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition />
-            <RowDefinition Height="70"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -22,11 +22,21 @@
             <ColumnDefinition Width="150px"/>
             <ColumnDefinition Width="150px"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnCreateLeague" Content="Create League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="1" Grid.Column="1" Grid.RowSpan="1" Padding="20px 0px" Click="btnCreateLeague_Click" ></Button>
-        <Button x:Name="btnViewLeague" Content="View League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="1" Grid.Column="2" Grid.RowSpan="1" Padding="20px 0px" Click="btnViewLeague_Click" ></Button>
-        <Button x:Name="btnUpdateLeague" Content="Update League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="3" Grid.Column="1" Grid.RowSpan="1" Padding="20px 0px" Click="btnUpdateLeague_Click"></Button>
-        <Button x:Name="btnDeleteLeague" Content="Delete League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="3" Grid.Column="2" Grid.RowSpan="1" Padding="20px 0px" Click="btnDeleteLeague_Click" ></Button>
-
+        <Menu Grid.Row="0" Padding="20px, 0px">
+            <MenuItem x:Name="mnuFile" Header="File">
+                <MenuItem x:Name="mnuExit" Header="Exit" Click="mnuExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <DataGrid  x:Name="datLeague" SelectionMode="Single" ToolTip="Double-Click an Item to view details"
+                                   IsReadOnly="True" Grid.Row =" 1" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="5" FontSize="24" />
+        
+        <Button x:Name="btnCreateLeague" Content="Create League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="4" Grid.Column="1" Grid.RowSpan="1" Padding="20px 0px" Click="btnCreateLeague_Click" ></Button>
+        
+        <Button x:Name="btnUpdateLeague" Content="Update League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="4" Grid.Column="2" Grid.RowSpan="1" Padding="20px 0px" Click="btnUpdateLeague_Click"></Button>
+        <Button x:Name="btnDeleteLeague" Content="Delete League" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Row ="4" Grid.Column="3" Grid.RowSpan="1" Padding="20px 0px" Click="btnDeleteLeague_Click" ></Button>
+        <StatusBar Grid.Row="5" Grid.ColumnSpan="3">
+            <StatusBarItem x:Name="status_message" Content="Look at all these Leagues" ></StatusBarItem>
+        </StatusBar>
 
     </Grid>
 </Window>

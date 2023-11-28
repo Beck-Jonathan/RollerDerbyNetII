@@ -84,9 +84,16 @@ namespace UnitTestProject1
             string City = "Chicago";
             string State = "IL";
             string ZipCode = "45521";
+            Location _location = new Location();
+            _location.State = State;
+            _location.ZipCode = ZipCode;
+            _location.LocationId = LocationId;
+            _location.City = City;
+            _location.LeagueID = LeagueID;
+            _location.ContactPhone = ContactPhone;
 
             //act
-            _locationmanager.AddLocation(LocationId, LeagueID, ContactPhone, City, State, ZipCode);
+            _locationmanager.AddLocation(_location);
             // assert
             Assert.AreEqual(expectedsize, _locationmanager.SelectAllLocations().Count);
 

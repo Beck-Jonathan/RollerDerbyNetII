@@ -1,0 +1,59 @@
+﻿<Window x:Class="RollerDerby.UpdateLocation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RollerDerby"
+        mc:Ignorable="d"
+        Title="UpdateLocation" Height="450" Width="800">
+    
+    <Grid>
+      
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            
+
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150px" />
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="150px"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Padding="20px, 0px">
+            <MenuItem x:Name="mnuFile" Header="File">
+                <MenuItem x:Name="mnuExit" Header="Exit" Click="mnuExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <Label x:Name="lblOldLocation" Grid.Column="2" Grid.Row="0" Content="Location" />
+        
+        <Label x:Name="lblLocationID" Grid.Column="1" Grid.Row="1" Content="Location  Name" />
+        <Label x:Name="lblLeagueID" Grid.Column="1" Grid.Row="2" Content="League ID" />
+        <Label x:Name="lblLocationPhone" Grid.Column="1" Grid.Row="3" Content="Location Phone" />
+        <Label x:Name="lblPhoneEx" Grid.Column="3" Grid.Row="3" Content="ex: (454)121-4452" />
+        <Label x:Name="lbllocationCity" Grid.Column="1" Grid.Row="4" Content="Location City" />
+        <Label x:Name="lblLocationState" Grid.Column="1" Grid.Row="5" Content="Location State" />
+        <Label x:Name="lblLocationZip" Grid.Column="1" Grid.Row="6" Content="Location zip" />
+        <TextBox x:Name="tbxoldLocationName" Grid.Column="2" Grid.Row="1" Height="30px" Width="100px"  />
+        <ComboBox x:Name="cbxoldLocationLeague" Grid.Column="2" Grid.Row="2" Height="30px" Width="100px" />
+        <TextBox x:Name="tbxoldLocationPhone" Grid.Column="2" Grid.Row="3" Height="30px" Width="100px"  />
+        <TextBox x:Name="tbxoldLocationCity" Grid.Column="2" Grid.Row="4" Height="30px" Width="100px"  />
+        <ComboBox x:Name="cbxoldLocationState" Grid.Column="2" Grid.Row="5" Height="30px" Width="100px"  />
+        <TextBox x:Name="tbxoldLocationZip" Grid.Column="2" Grid.Row="6" Height="30px" Width="100px"  />
+        
+        <Button x:Name="btnUpdateLocation" Grid.Column="2" Grid.Row="7" Content="Update Location" Height="40px" Width="200px" Click="btnUpdateLocation_Click"></Button>
+        <Button x:Name="btnAddLocation" Grid.Column="3" Grid.Row="7" Content="Add Location" Height="40px" Width="200px" Click="btnAddLocation_Click" ></Button>
+        <StatusBar Grid.Row="8" Grid.ColumnSpan="3">
+            <StatusBarItem x:Name="status_message" Content="Click Add or Edit" ></StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

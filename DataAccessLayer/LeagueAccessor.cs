@@ -178,7 +178,7 @@ namespace DataAccessLayer
             }
             return rows;
         }
-        public int deleteLeague(string LeagueID)
+        public int deleteLeague(League league)
         {
             int rows = 0;
             // start with a connection object
@@ -191,7 +191,7 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@LeagueID", SqlDbType.NVarChar, 100);
-            cmd.Parameters["@LeagueID"].Value = LeagueID;
+            cmd.Parameters["@LeagueID"].Value = league.LeagueID;
             try
             {
                 conn.Open();

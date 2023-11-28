@@ -15,11 +15,13 @@ namespace RollerDerby
         public static SkaterManager _skatermanager = null;
         public static LeagueManager _leaguemanager = null;
         public static LocationManager _locationmanager = null;
+        public static TeamManager _teamManager = null;
 
 
         public static List<Skater> allSkaters = null;
         public static List<League> allLeagues = null;
         public static List<LocationVM> allLocations = null;
+        public static List<Team> allTeams = null;
         private SkaterVM loggedinSkater = null;
         public MainWindow()
         {
@@ -34,9 +36,11 @@ namespace RollerDerby
             }
             tabsetMain.Visibility = Visibility.Collapsed;
             tabContainer.Visibility = Visibility.Collapsed;
+            mnuEdit.Visibility = Visibility.Collapsed;
         }
         private void updateUIForSkater()
         {
+            mnuEdit.Visibility = Visibility.Visible;
             string roleslist = "";
             for (int i = 0; i < loggedinSkater.Roles.Count; i++)
             {
@@ -57,8 +61,8 @@ namespace RollerDerby
             }
             string greeting = "Greetings " + loggedinSkater.GivenName + " you are logged in as " + roleslist + ".";
             lblGreeting.Content = greeting;
-            status_message.Content = "Logged in on " + DateTime.Now.ToLongDateString() + "at" +
-                DateTime.Now.ToShortTimeString() + "please remember to log out";
+            status_message.Content = "Logged in on " + DateTime.Now.ToLongDateString() + " at " +
+                DateTime.Now.ToShortTimeString() + ". Please remember to log out.";
             txtDerbyName.Text = "";
             txtDerbyName.Visibility = Visibility.Hidden;
             pwdPassword.Password = "";
@@ -182,7 +186,7 @@ namespace RollerDerby
                                 loggedinSkater = null;
                             }
 
-                            updateUIForLogout();
+                            updateUIForSkater();
                             return;
 
                         }
@@ -233,8 +237,10 @@ namespace RollerDerby
             _skatermanager = new SkaterManager();
             _leaguemanager = new LeagueManager();
             _locationmanager = new LocationManager();
+            _teamManager = new TeamManager();
             allLeagues = _leaguemanager.getAllLeague();
             allLocations = _locationmanager.SelectAllLocations();
+            allTeams = _teamManager.getAllTeam();
             //allSkaters = _skatermanager.getAllSkater();
 
             txtDerbyName.Focus();
@@ -292,6 +298,11 @@ namespace RollerDerby
         {
             Window Teams = new TeamsWindow();
             var result = Teams.ShowDialog();
+        }
+
+        private void mnuExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

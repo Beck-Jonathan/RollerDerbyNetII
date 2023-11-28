@@ -1,4 +1,5 @@
 ﻿using DataAccessFakes;
+using DataObjects;
 using LogicLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -36,9 +37,10 @@ namespace UnitTestProject1
             //arrange
             bool Expected = true;
             bool Actual = false;
+            Team team = new Team();
 
             //act
-            Actual = _teamManager.addTeam("a", "b", 50,"c", "d", "e");
+            Actual = _teamManager.addTeam(team);
 
             //assert
             Assert.AreEqual(Expected, Actual);
@@ -63,10 +65,25 @@ namespace UnitTestProject1
             string actual = "";
             string expected = "Moline";
 
+            TeamVM team1 = new TeamVM();
+            team1.TeamId = "Blackhawks";
+            team1.LeagueID = "WFTDA";
+            team1.MonthlyDue = 40;
+            team1.City = "Chicago";
+            team1.State = "IL";
+            team1.Zip = "55214";
+            Team newTeam = new Team();
+            newTeam.State = "IL";
+            newTeam.MonthlyDue = 50;
+            newTeam.LeagueID = "WTFDA";
+            newTeam.City = "Moline";
+            newTeam.Zip = "55214";
+            newTeam.TeamId = "Blackhawks";
+
 
 
             //act
-            _teamManager.editTeam("Blackhawks", "WFTDA",40 ,"Chicago", "IL", "55214", "Blackhawks", "WFTDA",50 ,"Moline", "IL", "55214");
+            _teamManager.editTeam(team1, newTeam);
             actual = _teamManager.getTeamByPrimaryKey("Blackhawks").City;
 
             //assert
@@ -78,17 +95,28 @@ namespace UnitTestProject1
         {
             //arrange
 
-            string actual = "";
-            string expected = "Moline";
+            Team oldTeam = new Team();
+            oldTeam.State = "IL";
+            oldTeam.MonthlyDue = 40;
+            oldTeam.LeagueID = "WTFDA";
+            oldTeam.City = "Chicago";
+            oldTeam.Zip = "55214";
+            oldTeam.TeamId = "Blueberries";
+            Team newTeam = new Team();
+            newTeam.State = "IL";
+            newTeam.MonthlyDue = 50;
+            newTeam.LeagueID = "WTFDA";
+            newTeam.City = "Moline";
+            newTeam.Zip = "55214";
 
 
 
             //act
-            _teamManager.editTeam("Blackhawks", "xx",45 ,"xx", "IL", "55214", "Blackhawks" ,"WFTDA",50, "Moline", "IL", "55214");
+            _teamManager.editTeam(oldTeam, newTeam);
             //slack
 
             //assert nothing to do
-            
+
         }
         [TestMethod]
         public void test6()

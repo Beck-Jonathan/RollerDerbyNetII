@@ -10,7 +10,7 @@ namespace DataAccessLayer
 
     public class TeamAccessor : ITeamAccessor
     {
-        public int insertTeam(string TeamId, string LeagueID, decimal MonthlyDue, string City, string State, string Zip)
+        public int insertTeam(Team team)
         {
             int rows = 0;
             // start with a connection object
@@ -27,16 +27,16 @@ namespace DataAccessLayer
             cmd.Parameters.Add("@MonthlyDue", SqlDbType.Money);
 
             cmd.Parameters.Add("@City", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@State", SqlDbType.NVarChar, 5);
+            cmd.Parameters.Add("@State", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Zip", SqlDbType.NVarChar, 5);
 
             //We need to set the parameter values
-            cmd.Parameters["@TeamId"].Value = TeamId;
-            cmd.Parameters["@LeagueID"].Value = LeagueID;
-            cmd.Parameters["@MonthlyDue"].Value = MonthlyDue;
-            cmd.Parameters["@City"].Value = City;
-            cmd.Parameters["@State"].Value = State;
-            cmd.Parameters["@Zip"].Value = Zip;
+            cmd.Parameters["@TeamId"].Value = team.TeamId;
+            cmd.Parameters["@LeagueID"].Value = team.LeagueID;
+            cmd.Parameters["@MonthlyDue"].Value = team.MonthlyDue;
+            cmd.Parameters["@City"].Value = team.City;
+            cmd.Parameters["@State"].Value = team.State;
+            cmd.Parameters["@Zip"].Value = team.Zip;
             try
             {
                 //open the connection 
@@ -149,7 +149,7 @@ namespace DataAccessLayer
             }
             return output;
         }
-        public int updateTeam(string oldTeamId, string oldLeagueID, decimal oldMonthlyDue, string oldCity, string oldState, string oldZip, string newLeagueID, decimal newMonthlyDue, string newCity, string newState, string newZip)
+        public int updateTeam(Team oldTeam, Team newTeam)
         {
             int rows = 0;
             // start with a connection object
@@ -162,31 +162,31 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@oldTeamId", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@newTeamId", SqlDbType.NVarChar, 50);
+
             cmd.Parameters.Add("@oldLeagueID", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@newLeagueID", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@oldMonthlyDue", SqlDbType.Money);
             cmd.Parameters.Add("@newMonthlyDue", SqlDbType.Money);
             cmd.Parameters.Add("@oldCity", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@newCity", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@oldState", SqlDbType.NVarChar, 5);
-            cmd.Parameters.Add("@newState", SqlDbType.NVarChar, 5);
+            cmd.Parameters.Add("@oldState", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@newState", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@oldZip", SqlDbType.NVarChar, 5);
             cmd.Parameters.Add("@newZip", SqlDbType.NVarChar, 5);
 
             //We need to set the parameter values
-            cmd.Parameters["@oldTeamId"].Value = oldTeamId;
+            cmd.Parameters["@oldTeamId"].Value = oldTeam.TeamId;
 
-            cmd.Parameters["@oldLeagueID"].Value = oldLeagueID;
-            cmd.Parameters["@newLeagueID"].Value = newLeagueID;
-            cmd.Parameters["@oldMonthlyDue"].Value = oldMonthlyDue;
-            cmd.Parameters["@newMonthlyDue"].Value = newMonthlyDue;
-            cmd.Parameters["@oldCity"].Value = oldCity;
-            cmd.Parameters["@newCity"].Value = newCity;
-            cmd.Parameters["@oldState"].Value = oldState;
-            cmd.Parameters["@newState"].Value = newState;
-            cmd.Parameters["@oldZip"].Value = oldZip;
-            cmd.Parameters["@newZip"].Value = newZip;
+            cmd.Parameters["@oldLeagueID"].Value = oldTeam.LeagueID;
+            cmd.Parameters["@newLeagueID"].Value = newTeam.LeagueID;
+            cmd.Parameters["@oldMonthlyDue"].Value = oldTeam.MonthlyDue;
+            cmd.Parameters["@newMonthlyDue"].Value = newTeam.MonthlyDue;
+            cmd.Parameters["@oldCity"].Value = oldTeam.City;
+            cmd.Parameters["@newCity"].Value = newTeam.City;
+            cmd.Parameters["@oldState"].Value = oldTeam.State;
+            cmd.Parameters["@newState"].Value = newTeam.State;
+            cmd.Parameters["@oldZip"].Value = oldTeam.Zip;
+            cmd.Parameters["@newZip"].Value = newTeam.Zip;
             try
             {
                 //open the connection 
@@ -220,6 +220,7 @@ namespace DataAccessLayer
             // set the command type
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
+            cmd.Parameters.Add("@TeamId", SqlDbType.NVarChar, 50);
             cmd.Parameters["@TeamID"].Value = TeamID;
             try
             {

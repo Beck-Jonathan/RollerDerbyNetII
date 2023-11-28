@@ -34,5 +34,68 @@
             return isValid;
 
         }
+        public static bool isValidNVarChar100(this string _string)
+        {
+            bool isValid = false;
+            if (_string.Length <= 100 && _string.Length > 3)
+            {
+
+                isValid = true;
+            }
+
+            return isValid;
+
+        }
+
+        public static bool isValidzip(this string _string)
+        {
+            bool isValid = false;
+            if (_string.Length == 5)
+            {
+
+                isValid = true;
+            }
+
+            return isValid;
+
+        }
+        public static bool isValidPhone(this string _string)
+        {
+            bool isValid = false;
+            if (_string.Length == 13)
+            {
+
+                isValid = true;
+            }
+
+            return isValid;
+
+        }
+        public static bool isValidNVarChar50(this string _string)
+        {
+            bool isValid = false;
+            if (_string.Length <= 50 && _string.Length > 3)
+            {
+
+                isValid = true;
+            }
+
+            return isValid;
+
+        }
+
+        public static bool isValidDecimal(this string _decimal)
+        {
+            bool isValid = false;
+            decimal parsedDecimal = 0.0m;
+            if (isValid = decimal.TryParse(_decimal, out parsedDecimal))
+            {
+
+                isValid = true;
+            }
+
+            return isValid;
+
+        }
     }
 }

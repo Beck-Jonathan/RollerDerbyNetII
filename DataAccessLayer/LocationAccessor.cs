@@ -9,7 +9,7 @@ namespace DataAccessLayer
 {
     public class LocationAccessor : ILocationAccessor
     {
-        public int AddLocation(string LocationID, string LeagueID, string ContactPhone, string City, string State, string Zip)
+        public int AddLocation(Location location)
         {
             int rows = 0;
             // start with a connection object
@@ -23,18 +23,18 @@ namespace DataAccessLayer
             // we need to add parameters to the command
             cmd.Parameters.Add("@LocationID", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@LeagueID", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@ContactPhone", SqlDbType.NVarChar, 11);
+            cmd.Parameters.Add("@ContactPhone", SqlDbType.NVarChar, 13);
             cmd.Parameters.Add("@City", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@State", SqlDbType.NVarChar, 5);
+            cmd.Parameters.Add("@State", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Zip", SqlDbType.NVarChar, 5);
 
             //We need to set the parameter values
-            cmd.Parameters["@LocationID"].Value = LocationID;
-            cmd.Parameters["@LeagueID"].Value = LeagueID;
-            cmd.Parameters["@ContactPhone"].Value = ContactPhone;
-            cmd.Parameters["@City"].Value = City;
-            cmd.Parameters["@State"].Value = State;
-            cmd.Parameters["@Zip"].Value = Zip;
+            cmd.Parameters["@LocationID"].Value = location.LocationId;
+            cmd.Parameters["@LeagueID"].Value = location.LeagueID;
+            cmd.Parameters["@ContactPhone"].Value = location.ContactPhone;
+            cmd.Parameters["@City"].Value = location.City;
+            cmd.Parameters["@State"].Value = location.State;
+            cmd.Parameters["@Zip"].Value = location.ZipCode;
             try
             {
                 //open the connection 
@@ -145,7 +145,7 @@ namespace DataAccessLayer
             }
             return output;
         }
-        public int updateLocation(string oldLocationID, string oldLeagueID, string oldContactPhone, string oldCity, string oldState, string oldZip, string newLeagueID, string newContactPhone, string newCity, string newState, string newZip)
+        public int updateLocation(Location oldLocation, Location newLocation)
         {
             int rows = 0;
             // start with a connection object
@@ -158,31 +158,34 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@oldLocationID", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@newLocationID", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@oldLeagueID", SqlDbType.NVarChar, 100);
 
-            cmd.Parameters.Add("@oldContactPhone", SqlDbType.NVarChar, 11);
-            cmd.Parameters.Add("@newContactPhone", SqlDbType.NVarChar, 11);
+
+            cmd.Parameters.Add("@oldLeagueID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@newLeagueID", SqlDbType.NVarChar, 100);
+
+            cmd.Parameters.Add("@oldContactPhone", SqlDbType.NVarChar, 14);
+            cmd.Parameters.Add("@newContactPhone", SqlDbType.NVarChar, 14);
             cmd.Parameters.Add("@oldCity", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@newCity", SqlDbType.NVarChar, 100);
-            cmd.Parameters.Add("@oldState", SqlDbType.NVarChar, 5);
-            cmd.Parameters.Add("@newState", SqlDbType.NVarChar, 5);
+            cmd.Parameters.Add("@oldState", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@newState", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@oldZip", SqlDbType.NVarChar, 5);
             cmd.Parameters.Add("@newZip", SqlDbType.NVarChar, 5);
 
             //We need to set the parameter values
-            cmd.Parameters["@oldLocationID"].Value = oldLocationID;
+            cmd.Parameters["@oldLocationID"].Value = oldLocation.LocationId;
 
-            cmd.Parameters["@oldLeagueID"].Value = oldLeagueID;
-            cmd.Parameters["@newLeagueID"].Value = newLeagueID;
-            cmd.Parameters["@oldContactPhone"].Value = oldContactPhone;
-            cmd.Parameters["@newContactPhone"].Value = newContactPhone;
-            cmd.Parameters["@oldCity"].Value = oldCity;
-            cmd.Parameters["@newCity"].Value = newCity;
-            cmd.Parameters["@oldState"].Value = oldState;
-            cmd.Parameters["@newState"].Value = newState;
-            cmd.Parameters["@oldZip"].Value = oldZip;
-            cmd.Parameters["@newZip"].Value = newZip;
+
+            cmd.Parameters["@oldLeagueID"].Value = oldLocation.LeagueID;
+            cmd.Parameters["@newLeagueID"].Value = newLocation.LeagueID;
+            cmd.Parameters["@oldContactPhone"].Value = oldLocation.ContactPhone;
+            cmd.Parameters["@newContactPhone"].Value = newLocation.ContactPhone;
+            cmd.Parameters["@oldCity"].Value = oldLocation.City;
+            cmd.Parameters["@newCity"].Value = newLocation.City;
+            cmd.Parameters["@oldState"].Value = oldLocation.State;
+            cmd.Parameters["@newState"].Value = newLocation.State;
+            cmd.Parameters["@oldZip"].Value = oldLocation.ZipCode;
+            cmd.Parameters["@newZip"].Value = newLocation.ZipCode;
             try
             {
                 //open the connection 

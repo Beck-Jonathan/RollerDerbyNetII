@@ -46,6 +46,7 @@
     <Compile Include="LocationAccessorFakes.cs" />
     <Compile Include="SkaterAccessorFake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkaterTeamApplicationFakes.cs" />
     <Compile Include="TeamAccessorFakes.cs" />
   </ItemGroup>
   <ItemGroup>

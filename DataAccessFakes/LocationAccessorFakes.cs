@@ -41,17 +41,13 @@ namespace DataAccessFakes
 
 
         }
-        public int AddLocation(string LocationID, string LeagueID, string ContactPhone, string City, string State, string ZipCode)
+        public int AddLocation(Location location)
         {
             int initialsize = fakelocations.Count;
-            LocationVM _location = new LocationVM();
-            _location.LocationId = LocationID;
-            _location.LeagueID = LeagueID;
-            _location.ContactPhone = ContactPhone;
-            _location.City = City;
-            _location.State = State;
-            _location.ZipCode = ZipCode;
-            fakelocations.Add(_location);
+            LocationVM locationVM = new LocationVM();
+            locationVM.LocationId = location.LocationId;
+
+            fakelocations.Add(locationVM);
             int newsize = fakelocations.Count;
             return newsize - initialsize;
 
@@ -126,7 +122,7 @@ namespace DataAccessFakes
             throw new NotImplementedException();
         }
 
-        public int updateLocation(string oldLocaitonID, string oldLeagueID, string oldContactPhone, string oldCity, string oldState, string oldZipCode, string newLeagueID, string newContactPhone, string newCity, string newState, string newZipCode)
+        public int updateLocation(Location oldLocaiton, Location newLocation)
         {
             throw new NotImplementedException();
         }

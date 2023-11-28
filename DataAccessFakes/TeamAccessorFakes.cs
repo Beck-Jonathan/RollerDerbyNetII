@@ -42,17 +42,11 @@ namespace DataAccessFakes
             throw new NotImplementedException();
         }
 
-        public int insertTeam(string TeamId, string LeagueID,decimal Monthlydue, string City, string State, string Zip)
+        public int insertTeam(Team team)
         {
             int startingSize = faketeams.Count;
-            TeamVM _newTeam = new TeamVM();
-            _newTeam.TeamId = TeamId;
-            _newTeam.LeagueID = LeagueID;
-            _newTeam.MonthlyDue = 55;
-            _newTeam.City = City;
-            _newTeam.State = State;
-            _newTeam.Zip = Zip;
-            faketeams.Add(_newTeam);
+
+            faketeams.Add(team);
 
             int endingSize = faketeams.Count;
             //return endingSize - startingSize;
@@ -98,7 +92,7 @@ namespace DataAccessFakes
             return result;
         }
 
-        public int updateTeam(string oldTeamId, string oldLeagueID,decimal oldMonthlyDue ,string oldCity, string oldState, string oldZip, string newLeagueID,decimal newMonthlyDue ,string newCity, string newState, string newZip)
+        public int updateTeam(Team oldTeam, Team newTeam)
         {
             int result = 0;
             try
@@ -107,14 +101,14 @@ namespace DataAccessFakes
 
                 foreach (TeamVM _team in faketeams)
                 {
-                    if (_team.TeamId == oldTeamId && _team.LeagueID == oldLeagueID &&_team.MonthlyDue==oldMonthlyDue &&_team.City == oldCity && _team.State == oldState && _team.TeamId == oldZip)
+                    if (_team.TeamId == oldTeam.TeamId && _team.LeagueID == oldTeam.LeagueID && _team.MonthlyDue == oldTeam.MonthlyDue && _team.City == oldTeam.City && _team.State == oldTeam.State && _team.Zip == oldTeam.Zip)
                     {
 
-                        _team.LeagueID = newLeagueID;
-                        _team.City = newCity;
-                        _team.State = newState;
-                        _team.MonthlyDue = newMonthlyDue;
-                        _team.Zip = newZip;
+                        _team.LeagueID = newTeam.LeagueID;
+                        _team.City = newTeam.City;
+                        _team.State = newTeam.State;
+                        _team.MonthlyDue = newTeam.MonthlyDue;
+                        _team.Zip = newTeam.Zip;
                         result = 1;
 
 

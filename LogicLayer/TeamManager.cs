@@ -23,12 +23,12 @@ namespace LogicLayer
             _teamAccessor = teamAccessor;
 
         }
-        public bool addTeam(string TeamId, string LeagueID,decimal Monthlydue ,string City, string State, string Zip)
+        public bool addTeam(Team _team)
         {
             bool result = false;
             try
             {
-                result = (1 == _teamAccessor.insertTeam(TeamId, LeagueID, Monthlydue, City, State, Zip));
+                result = (1 == _teamAccessor.insertTeam(_team));
             }
             catch (Exception ex)
             {
@@ -37,13 +37,13 @@ namespace LogicLayer
             return result;
         }
 
-        public int editTeam(string oldTeamId, string oldLeagueID, decimal oldMonthlydue, string oldCity, string oldState, string oldZip, string newTeamId, string newLeagueID, decimal newMonthlyDue, string newCity, string newState, string newZip)
+        public int editTeam(Team _old, Team _new)
         {
             int result = 0;
 
             try
             {
-                result = _teamAccessor.updateTeam(oldTeamId, oldLeagueID,oldMonthlydue, oldCity, oldState, newTeamId, newLeagueID,newMonthlyDue ,newCity, newState, newZip);
+                result = _teamAccessor.updateTeam(_old, _new);
             }
             catch (Exception ex)
             {

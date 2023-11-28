@@ -20,12 +20,12 @@ namespace LogicLayer
             _leagueAccessor = leagueAccessor;
         }
 
-        public bool createLeague(string LeagueID, string Region, String Gender)
+        public bool createLeague(League league)
         {
             bool result = false;
             try
             {
-                result = (1 == _leagueAccessor.addLeague(LeagueID, Region, Gender));
+                result = (1 == _leagueAccessor.addLeague(league.LeagueID, league.Region, league.Gender));
             }
             catch (Exception ex)
             {
@@ -34,12 +34,12 @@ namespace LogicLayer
             return result;
         }
 
-        public int deleteLeague(string LeagueId)
+        public int deleteLeague(League league)
         {
             int result = 0;
             try
             {
-                result = _leagueAccessor.deleteLeague(LeagueId);
+                result = _leagueAccessor.deleteLeague(league);
             }
             catch (Exception ex)
             {
@@ -81,13 +81,13 @@ namespace LogicLayer
             return league;
         }
 
-        public int updateLeague(string oldLeagueID, string oldRegion, string oldGender, string newLeagueID, string newregion, string newGender)
+        public int updateLeague(League oldLeague, League newLeague)
         {
             int result = 0;
 
             try
             {
-                result = _leagueAccessor.updateLeague(oldLeagueID, oldRegion, oldGender, newregion, newGender);
+                result = _leagueAccessor.updateLeague(oldLeague.LeagueID, oldLeague.Region, oldLeague.Gender, newLeague.Region, newLeague.Gender);
             }
             catch (Exception ex)
             {

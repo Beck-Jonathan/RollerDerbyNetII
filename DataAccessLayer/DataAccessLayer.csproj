@@ -58,6 +58,7 @@
     <Compile Include="RoleAccessor.cs" />
     <Compile Include="SkaterAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkaterTeamApplicationAccessor.cs" />
     <Compile Include="Skater_practice_LineAccessor.cs" />
     <Compile Include="Skater_Role_LineAccessor.cs" />
     <Compile Include="SqlConnectionProvider.cs" />
