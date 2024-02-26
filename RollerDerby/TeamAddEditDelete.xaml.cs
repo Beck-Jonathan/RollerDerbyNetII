@@ -15,6 +15,7 @@ namespace RollerDerby
         public TeamManager _tm = null;
         public TeamAddEditDelete(Team t)
         {
+            //if you pass in a team , you are already in edit mode
             InitializeComponent();
             _team = t;
 
@@ -29,7 +30,7 @@ namespace RollerDerby
             cbxTeamState.IsEnabled = false;
         }
         public TeamAddEditDelete()
-        {
+        { //if you pass in nothing, you are in the view mode
             InitializeComponent();
             _tm = new TeamManager();
             cbxLeagueName.IsEnabled = true;
@@ -56,7 +57,7 @@ namespace RollerDerby
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        { //grab all combobox data. If a team exists, fill the combo boxes and text boxes with the data
             List<League> leagues = MainWindow.allLeagues;
             String[] states = States.Names();
 
@@ -81,7 +82,7 @@ namespace RollerDerby
             }
 
 
-           
+
 
 
             //on click edit, enable everything and change edit to save edit, disable add
@@ -94,7 +95,7 @@ namespace RollerDerby
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            //if this is the first click, unlock all fields and lock the add button
             if ((string)btnEdit.Content == "Edit")
             {
                 cbxLeagueName.IsEnabled = true;
@@ -109,6 +110,7 @@ namespace RollerDerby
                 btnAdd.IsEnabled = false;
             }
             else
+            //if this is your second click, validate the inputs, then pass the edit call to the database
             if (validInputs())
             {
                 {
@@ -155,7 +157,7 @@ namespace RollerDerby
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
+        { //if this is your first click, clear the fields and lock the edit button
             if ((string)btnAdd.Content == "Add")
             {
                 cbxLeagueName.IsEnabled = true;
@@ -171,7 +173,7 @@ namespace RollerDerby
                 tbxTeamCity.Text = "";
                 tbxTeamZip.Text = "";
                 tbxMonthlyDue.Text = "";
-                
+
                 cbxTeamActive.IsChecked = true;
                 cbxTeamState.Text = "";
                 btnAdd.Content = "Save Add";
@@ -179,7 +181,7 @@ namespace RollerDerby
                 btnEdit.IsEnabled = false;
             }
             else
-            {
+            { //if this is your second click, validate input and pass the object down to the database
                 if (validInputs())
                 {
                     Team newTeam = new Team();
@@ -226,7 +228,7 @@ namespace RollerDerby
         }
 
         private bool validInputs()
-        {
+        { //ensure the user has filled in each field properly
 
             return tbxTeamID.Text.isValidNVarChar50()
             && tbxTeamCity.Text.isValidNVarChar100()
@@ -237,7 +239,7 @@ namespace RollerDerby
 
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult=false;
+            this.DialogResult = false;
         }
     }
 }

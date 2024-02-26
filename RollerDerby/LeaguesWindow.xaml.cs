@@ -13,9 +13,9 @@ namespace RollerDerby
         {
             InitializeComponent();
         }
-
+        
         private void btnCreateLeague_Click(object sender, RoutedEventArgs e)
-        {
+        { //open a new create league window
             Window createLeague = new UpdateLeague();
             bool result = (bool)createLeague.ShowDialog();
             if (result)
@@ -32,11 +32,12 @@ namespace RollerDerby
 
         private void btnViewLeague_Click(object sender, RoutedEventArgs e)
         {
-
+            //not implemented
         }
 
         private void btnUpdateLeague_Click(object sender, RoutedEventArgs e)
         {
+            //open a new update league window, then refresh the list
             if (datLeague.SelectedItems.Count != 0)
             {
                 var _league = datLeague.SelectedItem as League;
@@ -55,7 +56,7 @@ namespace RollerDerby
             else { MessageBox.Show("Pick something, ya goon!"); }
         }
         private void btnDeleteLeague_Click(object sender, RoutedEventArgs e)
-        {
+        { //delete the selected league, then refresh the window
             if (datLeague.SelectedItems.Count != 0)
             {
                 var _league = datLeague.SelectedItem as League;
@@ -90,7 +91,7 @@ namespace RollerDerby
         }
         public void grabAllLeagues()
         {
-
+            //grab all leagues to fill the window.
             try
             {
 
@@ -113,6 +114,7 @@ namespace RollerDerby
 
         private void Window_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            //pull up the update league window
             if (datLeague.SelectedItems.Count != 0)
             {
                 var _league = datLeague.SelectedItem as League;

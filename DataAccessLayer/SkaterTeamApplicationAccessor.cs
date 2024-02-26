@@ -1,9 +1,10 @@
 ﻿using DataAccessInterfaces;
-using DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using DataObjects;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccessLayer
 {
@@ -51,6 +52,7 @@ namespace DataAccessLayer
         public SkaterTeamApplication selectSkaterteamApplicationByPrimaryKey(int ApplicationID)
         {
             SkaterTeamApplication output = new SkaterTeamApplication();
+            
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
@@ -73,6 +75,7 @@ namespace DataAccessLayer
                 if (reader.HasRows)
                     if (reader.Read())
                     {
+                        
                         output.ApplicationID = reader.GetInt32(0);
                         output.skaterID = reader.GetString(1);
                         output.TeamName = reader.GetString(2);
@@ -213,6 +216,57 @@ namespace DataAccessLayer
                 conn.Close();
             }
             return rows;
+        }
+
+        public List<SkaterTeamApplication> selectSkaterTeamApplicationBySkaterID(Skater skater)
+        {
+           List<SkaterTeamApplication> output = new List <SkaterTeamApplication>();
+
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_retreive_TeamApplication_by_SkaterID";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // we need to add parameters to the command
+            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar,50);
+
+            //We need to set the parameter values
+            cmd.Parameters["@SkaterID"].Value = skater.SkaterID;
+            try
+            {
+                //open the connection 
+                conn.Open();  //execute the command and capture result
+                var reader = cmd.ExecuteReader();
+                //process the results
+                if (reader.HasRows)
+                { 
+                    while (reader.Read())
+                    {
+                        var _SkaterteamApplication = new SkaterTeamApplication();
+                        _SkaterteamApplication.ApplicationID = reader.GetInt32(0);
+                        _SkaterteamApplication.skaterID = reader.GetString(1);
+                        _SkaterteamApplication.TeamName = reader.GetString(2);
+                        _SkaterteamApplication.ApplicationStatus = reader.GetString(3);
+                        output.Add(_SkaterteamApplication);
+                    }
+                }
+                    else
+                    {
+                        throw new ArgumentException("SkaterteamApplication not found");
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return output;
         }
     }
 }

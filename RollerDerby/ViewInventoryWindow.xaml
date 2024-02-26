@@ -1,0 +1,41 @@
+﻿<Window x:Class="RollerDerby.ViewInventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RollerDerby"
+        mc:Ignorable="d"
+        Title="ViewInventoryWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <!-- comment -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150px" />
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10px"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Padding="5px, 0px" Grid.ColumnSpan="5">
+            <MenuItem x:Name="mnuFile" Header="File">
+                <MenuItem x:Name="mnuExit" Header="Exit" Click="mnuExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <DataGrid  x:Name="datInventory" SelectionMode="Single" ToolTip="Double-Click an Item to view details"
+                        IsReadOnly="True" Grid.Row =" 1" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="4" FontSize="18" />
+
+        <StatusBar Grid.Row="5" Grid.ColumnSpan="5">
+            <StatusBarItem x:Name="status_message" Content="Look at all these Teams" ></StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace RollerDerby
 {
@@ -22,20 +21,21 @@ namespace RollerDerby
         }
 
         public void grabAllTeams()
-        {
+        {//grab all teams from db
 
             try
             {
 
                 datTeam.ItemsSource = null;
                 List<Team> allteams = MainWindow._teamManager.getAllTeam();
-                foreach (Team team in allteams) {
-                    team.MonthlyDue = Decimal.Round(team.MonthlyDue,2);
-                
+                foreach (Team team in allteams)
+                {
+                    team.MonthlyDue = Decimal.Round(team.MonthlyDue, 2);
+
                 }
                 datTeam.ItemsSource = allteams;
-                
-              
+
+
 
 
 
@@ -51,11 +51,11 @@ namespace RollerDerby
 
         private void datTeam_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            //not sure why this is here
         }
 
         private void datTeam_MouseDoubleClick_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
+        { //open new edit window with selected team
             if (datTeam.SelectedItems.Count != 0)
             {
                 Team team = datTeam.SelectedItem as Team;
@@ -68,7 +68,7 @@ namespace RollerDerby
         }
 
         private void btnDeleteTeam_Click(object sender, RoutedEventArgs e)
-        {
+        {//delete selected team
             if (datTeam.SelectedItems.Count != 0)
             {
                 Team team = datTeam.SelectedItem as Team;
@@ -102,15 +102,15 @@ namespace RollerDerby
         }
 
         private void btnUpdateTeam_Click(object sender, RoutedEventArgs e)
-        {
+        {//open new update team window
             if (datTeam.SelectedItems.Count != 0)
             {
                 Team team = datTeam.SelectedItem as Team;
                 try
                 {
                     Window updateTeam = new TeamAddEditDelete(team);
-                   bool result= (bool)updateTeam.ShowDialog();
-                   
+                    bool result = (bool)updateTeam.ShowDialog();
+
                     if (result)
                     {
                         MessageBox.Show("Update successful");
@@ -133,7 +133,7 @@ namespace RollerDerby
         }
 
         private void btnCreateTeam_Click(object sender, RoutedEventArgs e)
-        {
+        { // open new create team window
             try
             {
                 Window updateTeam = new TeamAddEditDelete();
@@ -153,5 +153,5 @@ namespace RollerDerby
             }
         }
     }
-    
+
 }

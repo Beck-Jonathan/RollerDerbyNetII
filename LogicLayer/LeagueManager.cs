@@ -20,6 +20,7 @@ namespace LogicLayer
             _leagueAccessor = leagueAccessor;
         }
 
+        //this function will create a league and add it to db
         public bool createLeague(League league)
         {
             bool result = false;
@@ -33,7 +34,7 @@ namespace LogicLayer
             }
             return result;
         }
-
+        //this function will mark a league as inactive
         public int deleteLeague(League league)
         {
             int result = 0;
@@ -50,7 +51,7 @@ namespace LogicLayer
 
             return result;
         }
-
+        //this function will grab all leagues
         public List<League> getAllLeague()
         {
             List<League> results = null;
@@ -65,7 +66,7 @@ namespace LogicLayer
             }
             return results;
         }
-
+        //this function will get a league by league id
         public League getLeagueByPrimaryKey(string LeagueID)
         {
             League league = null;
@@ -80,7 +81,7 @@ namespace LogicLayer
             }
             return league;
         }
-
+        //this function will update a league
         public int updateLeague(League oldLeague, League newLeague)
         {
             int result = 0;

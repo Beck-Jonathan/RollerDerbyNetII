@@ -22,6 +22,7 @@ namespace LogicLayer
             _locationAccessor = locationAccessor;
 
         }
+        //this function will add a location
         public bool AddLocation(Location location)
         {
             bool result = false;
@@ -36,6 +37,7 @@ namespace LogicLayer
             return result;
         }
 
+        //this function will mark a locaiton as inactive
         public int deleteLocation(string LocationID)
         {
             int result = 0;
@@ -52,7 +54,7 @@ namespace LogicLayer
 
             return result;
         }
-
+        //this function will grab all locations
         public List<LocationVM> SelectAllLocations()
         {
             List<LocationVM> results = null;
@@ -68,6 +70,7 @@ namespace LogicLayer
             return results;
         }
 
+        //this function will select a location by its PK
         public LocationVM SelectLocationByLocationID(string LocaitonID)
         {
             LocationVM location = null;
@@ -83,11 +86,13 @@ namespace LogicLayer
             return location;
         }
 
+        //this function will will grab all locaitons associated witha  league. Not imploemented
         public List<LocationVM> SelectLocationsByLeague(League league)
         {
             throw new NotImplementedException();
         }
 
+        //this function will update a location
         public int updateLocation(Location oldLocation, Location newLocation)
         {
             int result = 0;

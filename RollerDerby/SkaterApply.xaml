@@ -1,0 +1,47 @@
+﻿<Window x:Class="RollerDerby.SkaterApply"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RollerDerby"
+        mc:Ignorable="d"
+        Title="SkaterApply" Height="250" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            
+            <RowDefinition />
+            <RowDefinition Height="20"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row = "0" Grid.ColumnSpan="4" Padding = "20px, 0px" >
+            <MenuItem x:Name = "mnuFile" Header = "File" >
+                <MenuItem x:Name = "mnuExit" Header = "Exit" Click = "mnuExit_Click" />
+            </MenuItem >
+            <MenuItem x:Name = "mnuHelp" Header = "Help" >
+                <MenuItem x:Name = "mnuAbout" Header = "About" />
+            </MenuItem >
+        </Menu>
+        <Label x:Name = "lblReuqetedTeam" Grid.Column = "1" Grid.Row = "1" Grid.ColumnSpan="2" Content="
+               Please select the team you would like to Join. " />
+        
+
+        <Label x:Name = "lblAvaialbleTeams" Grid.Column = "1" Grid.Row = "2" Content = "Available Teams " />
+        <ComboBox x:Name = "cbxAvailableTeams" Grid.Column = "2" Grid.Row = "2" />
+        
+
+
+        <Button x:Name="btnApply" Grid.Column="2" Grid.Row="3" Content="Apply" Height="40px" Width="200px" Click="btnSignUp_Click"/>
+        <StatusBar Grid.Row ="7" Grid.ColumnSpan="4">
+            <StatusBarItem x:Name = "statMessage" Content = "Please Select"  Padding = "20px, 0px"/>
+        </StatusBar >
+    </Grid>
+</Window>

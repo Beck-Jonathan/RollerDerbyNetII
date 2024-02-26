@@ -72,6 +72,7 @@ namespace RollerDerby
             btnLogin.Content = "Log Out";
             btnLogin.IsDefault = false;
             showTabsForRoles();
+            tabsetMain.SelectedIndex = 3;
 
 
         }
@@ -184,6 +185,7 @@ namespace RollerDerby
                             {
                                 MessageBox.Show("Password Not Changed, you need to update password on first login", "Logging out", MessageBoxButton.OK, MessageBoxImage.Information);
                                 loggedinSkater = null;
+                                return;
                             }
 
                             updateUIForSkater();
@@ -303,6 +305,58 @@ namespace RollerDerby
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSkater_Click(object sender, RoutedEventArgs e)
+        {
+            Window Skaters = new SkaterWindow();
+            var result = Skaters.ShowDialog();
+        }
+
+        private void btnApply_Click(object sender, RoutedEventArgs e)
+        {
+            Window Skaterapplyhere = new SkaterApply(loggedinSkater);
+            //Window Apply = new SkaterApply(loggedinSkater);
+           var result = Skaterapplyhere.ShowDialog();
+
+        }
+
+        private void btnGear_Click(object sender, RoutedEventArgs e)
+        {
+            Window GearRequest = new GearRequestWindow(loggedinSkater);
+            var result = GearRequest.ShowDialog();
+        }
+
+        private void btnViewApplications_Click(object sender, RoutedEventArgs e)
+        {
+            Window SkaterViewApplications = new SkaterviewApplications(loggedinSkater,0);
+            var result = SkaterViewApplications.ShowDialog();
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            Window SignUp = new SkaterSignUp();
+            var result = SignUp.ShowDialog();
+        }
+
+        private void btnViewPending_Click(object sender, RoutedEventArgs e)
+        {
+            Window SkaterViewApplications = new SkaterviewApplications(loggedinSkater, 1);
+            var result = SkaterViewApplications.ShowDialog();
+
+        }
+
+        private void btnViewTeam_Click(object sender, RoutedEventArgs e)
+        {
+            Window ViewTeam = new SkaterWindow(loggedinSkater);
+            var result = ViewTeam.ShowDialog();
+        }
+
+        private void btnGearRequests_Click(object sender, RoutedEventArgs e)
+        {
+            Window SkaterViewApplications = new SkaterviewApplications(loggedinSkater, 2);
+            var result = SkaterViewApplications.ShowDialog();
+
         }
     }
 }

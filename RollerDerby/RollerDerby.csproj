@@ -58,14 +58,29 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Add_Skater.xaml.cs">
-      <DependentUpon>Add_Skater.xaml</DependentUpon>
+    <Compile Include="GearRequestWindow.xaml.cs">
+      <DependentUpon>GearRequestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LocationsWindow.xaml.cs">
       <DependentUpon>LocationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LeaguesWindow.xaml.cs">
       <DependentUpon>LeaguesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SkaterAddEditDelete.xaml.cs">
+      <DependentUpon>SkaterAddEditDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SkaterApply.xaml.cs">
+      <DependentUpon>SkaterApply.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SkaterSignUp.xaml.cs">
+      <DependentUpon>SkaterSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SkaterviewApplications.xaml.cs">
+      <DependentUpon>SkaterviewApplications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SkaterWindow.xaml.cs">
+      <DependentUpon>SkaterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeamAddEditDelete.xaml.cs">
       <DependentUpon>TeamAddEditDelete.xaml</DependentUpon>
@@ -76,11 +91,20 @@
     <Compile Include="testWindow.xaml.cs">
       <DependentUpon>testWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateGearRequest.xaml.cs">
+      <DependentUpon>UpdateGearRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateLeague.xaml.cs">
       <DependentUpon>UpdateLeague.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateLocation.xaml.cs">
       <DependentUpon>UpdateLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTeamApplicationWindow.xaml.cs">
+      <DependentUpon>UpdateTeamApplicationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewInventoryWindow.xaml.cs">
+      <DependentUpon>ViewInventoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WFTDADataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -91,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Add_Skater.xaml">
+    <Page Include="GearRequestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +143,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SkaterAddEditDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkaterApply.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkaterSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkaterviewApplications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkaterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TeamAddEditDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,11 +175,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpdateGearRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateLeague.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateLocation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateTeamApplicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewInventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

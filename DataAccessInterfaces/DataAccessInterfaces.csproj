@@ -45,6 +45,9 @@
     <Compile Include="IExercisePracticeLineAccessor.cs" />
     <Compile Include="IGameAccessor.cs" />
     <Compile Include="IGameTeamLineAccessor.cs" />
+    <Compile Include="IGearApplicationAccessor.cs" />
+    <Compile Include="IGearInventoryAccessor.cs" />
+    <Compile Include="IGearRequestAccessor.cs" />
     <Compile Include="IInvoiceAccessor.cs" />
     <Compile Include="ILeagueAccessor.cs" />
     <Compile Include="ILocationAccessor.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="ISkaterPracticeLineAccessor.cs" />
     <Compile Include="ISkaterRoleLineAccessor.cs" />
     <Compile Include="ITeamAccessor.cs" />
+    <Compile Include="ITeamApplicationAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SkaterTeamApplicationAccessor.cs" />
   </ItemGroup>

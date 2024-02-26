@@ -1,5 +1,5 @@
-﻿using DataObjects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DataObjects;
 
 namespace DataAccessInterfaces
 {
@@ -10,5 +10,6 @@ namespace DataAccessInterfaces
         List<SkaterTeamApplication> selectAllSkaterteamApplication();
         int updateSkaterteamApplication(int oldApplicationID, string oldSkaterID, string oldTeamName, string oldApplicationStatus, string newSkaterID, string newTeamName, string newApplicationStatus);
         int deleteSkaterteamApplication(int SkaterteamApplicationID);
+        List<SkaterTeamApplication> selectSkaterTeamApplicationBySkaterID(Skater skater);
     }
 }

@@ -1,0 +1,61 @@
+﻿<Window x:Class="RollerDerby.UpdateGearRequest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RollerDerby"
+        mc:Ignorable="d"
+        Title="UpdateGearRequest" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+            <RowDefinition Height="20"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row = "0" Grid.ColumnSpan="4" Padding = "20px, 0px" >
+            <MenuItem x:Name = "mnuFile" Header = "File" >
+                <MenuItem x:Name = "mnuExit" Header = "Exit" Click = "mnuExit_Click" />
+            </MenuItem >
+            <MenuItem x:Name = "mnuHelp" Header = "Help" >
+                <MenuItem x:Name = "mnuAbout" Header = "About" />
+            </MenuItem >
+        </Menu>
+        <Label x:Name = "lblSkaterSkaterID" Grid.Column = "1" Grid.Row = "1" Grid.ColumnSpan="2" Content="
+           Please select the Gear xYou Are Requesting " />
+
+
+        <Label x:Name = "lblHelmSize" Grid.Column = "1" Grid.Row = "2" Content = "Helm Size" />
+        <TextBox x:Name = "cbxHelmSize" Grid.Column = "2" Grid.Row = "2" />
+        <Label x:Name = "lblWristSize" Grid.Column = "1" Grid.Row = "3" Content = "Wrist Guard Size" />
+        <TextBox x:Name = "cbxWristSize" Grid.Column = "2" Grid.Row = "3" />
+        <Label x:Name = "lblElbowSize" Grid.Column = "1" Grid.Row = "4" Content = "Elbow Pad Size" />
+        <TextBox x:Name = "cbxElbowSize" Grid.Column = "2" Grid.Row = "4" />
+        <Label x:Name = "lblKneeSize" Grid.Column = "1" Grid.Row = "5" Content = "Knee Pad Size" />
+        <TextBox x:Name = "cbxKneeSize" Grid.Column = "2" Grid.Row = "5" />
+        <Label x:Name = "lblSkateSize" Grid.Column = "1" Grid.Row = "6" Content = "Skate Size" />
+        <TextBox x:Name = "cbxSkateSize" Grid.Column = "2" Grid.Row = "6" />
+        <Label x:Name="lblStatus" Grid.Column="1" Grid.Row="7" Content="Status"></Label>
+        <ComboBox x:Name="cbxStatus" Grid.Column="2" Grid.Row="7"></ComboBox>
+
+
+
+        <Button x:Name="btnRequest" Grid.Column="2" Grid.Row="8" Content=" Update Request" Height="40px" Width="200px" Click="btnRequest_Click"/>
+        <StatusBar Grid.Row ="9" Grid.ColumnSpan="4">
+            <StatusBarItem x:Name = "statMessage" Content = "Please Select"  Padding = "20px, 0px"/>
+        </StatusBar >
+    </Grid>
+</Window>

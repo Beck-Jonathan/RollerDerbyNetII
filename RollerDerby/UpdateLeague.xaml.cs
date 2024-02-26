@@ -14,6 +14,7 @@ namespace RollerDerby
         LeagueManager _lm = MainWindow._leaguemanager;
         public UpdateLeague()
         {
+            //start in add league mode
             InitializeComponent();
             tbxoldLeagueGender.IsEnabled = true;
             tbxoldLeagueName.IsEnabled = true;
@@ -32,6 +33,7 @@ namespace RollerDerby
 
         public UpdateLeague(League l)
         {
+            //take the passed in league
 
             InitializeComponent();
 
@@ -44,7 +46,7 @@ namespace RollerDerby
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        { //fill boxes with the existing league
 
             if (_league != null)
             {
@@ -56,7 +58,7 @@ namespace RollerDerby
         }
 
         private void btnUpdateLeague_Click(object sender, RoutedEventArgs e)
-        {
+        { //if this is the first click, unlock all fields and lock add button
 
 
             //if content is edit,
@@ -70,8 +72,9 @@ namespace RollerDerby
 
             }
             else
+            //if this is second click, validate inputs and send the update to the database
             {
-                if ( validInputs() )
+                if (validInputs())
                 {
                     tbxoldLeagueGender.IsEnabled = false;
                     tbxoldLeagueName.IsEnabled = false;
@@ -109,6 +112,7 @@ namespace RollerDerby
 
         private void btnAddLeague_Click(object sender, RoutedEventArgs e)
         {
+            //if this is the first click, clear all fields and lock the edit button
             if ((string)btnAddLeague.Content == "Add League")
             {
                 tbxoldLeagueGender.IsEnabled = true;
@@ -122,7 +126,7 @@ namespace RollerDerby
 
             }
             else
-            {
+            {//if this is the second click, send the new item to the database
                 if (
                     validInputs()
                     )
@@ -157,6 +161,7 @@ namespace RollerDerby
         }
         public bool validInputs()
         {
+            //validate all inputs
 
             return tbxoldLeagueRegion.Text.isValidNVarChar100() &&
                         tbxoldLeagueName.Text.isValidNVarChar100() &&

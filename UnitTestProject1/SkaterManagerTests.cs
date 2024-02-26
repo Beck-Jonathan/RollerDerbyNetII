@@ -152,5 +152,136 @@ namespace UnitTestProject1
             Assert.AreEqual(expectedResult, actualResult);
 
         }
+
+        [TestMethod]
+        public void TestGrabAllSkatersGrabsAllSkaters()
+        {
+            //arrange
+            int expected = 3;
+            int actual = 0;
+
+            //act 
+
+            actual = _skaterManager.getAllSkater().Count;
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+        [TestMethod]
+        public void TestAddSkaterAddsASkater()
+        {
+            int expected = 4;
+            int actual = 0;
+            SkaterVM newbie = new SkaterVM();
+            newbie.SkaterID = "Bennie";
+            
+            _skaterManager.addSkater(newbie);
+
+            //act
+            actual = _skaterManager.getAllSkater().Count;
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+        [TestMethod]
+        public void TestEditSkaterEditsSkater()
+        {
+            //arrange
+
+            String actual = "";
+            string expected = "new@email.com";
+            Skater newbie = new Skater();
+            newbie.SkaterID = "Hit";
+            newbie.Email = expected;
+            Skater toUpdate = _skaterManager.GetSkaterVMByDerbyName("Hit");
+
+
+            //act
+            _skaterManager.editSkater(toUpdate, newbie);
+            actual = _skaterManager.GetSkaterVMByDerbyName("Hit").Email;
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+
+
+        }
+
+        [TestMethod]
+
+        public void TestDeleteSKaterRemovesASkater()
+        {
+            int actual = 0;
+            int expected = 1;
+            Skater _tester = new Skater();
+            _tester.SkaterID = "Hit";
+
+            actual = _skaterManager.purgeSkater(_tester);
+
+            Assert.AreEqual(actual, expected);
+
+
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ApplicationException))]
+
+        public void TestDeleteSkaterFailsWithBadSkaterID()
+        {
+            int actual = 0;
+            int expected = 1;
+            Skater _tester = new Skater();
+            _tester.SkaterID = "Bit";
+
+            actual = _skaterManager.purgeSkater(_tester);
+
+            Assert.AreEqual(actual, expected);
+
+
+        }
+        [TestMethod]
+
+        public void TestRestoreSkaterRestoresSkater()
+        {
+            int actual = 0;
+            int expected = 1;
+            Skater _tester = new Skater();
+            _tester.SkaterID = "Hit";
+            _skaterManager.purgeSkater(_tester);
+            actual = _skaterManager.unpurgeSkater(_tester);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ApplicationException))]
+
+        public void TestRestoreSkaterFailsWithBadSkaterID()
+        {
+            int actual = 0;
+            int expected = 1;
+            Skater tester = new Skater();
+            tester.SkaterID = "Hit";
+            Skater breaker = new Skater();
+            breaker.SkaterID = "kjdsfdas";
+            _skaterManager.purgeSkater(tester);
+            actual = _skaterManager.unpurgeSkater(breaker);
+
+
+
+
+
+        }
+
+
     }
 }

@@ -26,7 +26,7 @@ namespace RollerDerby
         }
         public void grabAllLocations()
         {
-
+            //call the database and grab all locaitons
             try
             {
                 datLocations.ItemsSource = null;
@@ -45,10 +45,11 @@ namespace RollerDerby
             }
         }
 
-     
+
 
         private void Window_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            //open a new update locaitons window
             if (datLocations.SelectedItems.Count != 0)
             {
                 var _Location = datLocations.SelectedItem as Location;
@@ -69,13 +70,16 @@ namespace RollerDerby
 
         private void btnDeleteLocation_Click(object sender, RoutedEventArgs e)
         {
+            //delete selected locaiton
             if (datLocations.SelectedItems.Count != 0)
             {
                 var _Location = datLocations.SelectedItem as Location;
                 try
                 {
                     int result = MainWindow._locationmanager.deleteLocation(_Location.LocationId);
-                    if (result == 1) { MessageBox.Show("Locaiton Deleted");
+                    if (result == 1)
+                    {
+                        MessageBox.Show("Locaiton Deleted");
                         grabAllLocations();
                     }
                     else { throw new ApplicationException("Delete failed"); }
@@ -96,6 +100,7 @@ namespace RollerDerby
 
         private void btnCreateLocation_Click(object sender, RoutedEventArgs e)
         {
+            //open a new create locaiton window
             Window CreateLocation = new UpdateLocation();
             bool result = (bool)CreateLocation.ShowDialog();
             if (result)
@@ -111,7 +116,7 @@ namespace RollerDerby
         }
 
         private void btnUpdateLocation_Click_1(object sender, RoutedEventArgs e)
-        {
+        { //open a new update locaiton window
             if (datLocations.SelectedItems.Count != 0)
             {
                 var _location = datLocations.SelectedItem as Location;
@@ -131,6 +136,6 @@ namespace RollerDerby
         }
 
     }
-    
+
 
 }

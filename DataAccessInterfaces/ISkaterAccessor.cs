@@ -1,4 +1,5 @@
 ﻿using DataObjects;
+using System;
 using System.Collections.Generic;
 
 namespace DataAccessInterfaces
@@ -9,7 +10,13 @@ namespace DataAccessInterfaces
         int AuthenticateUserWithEmailAndPasswordHash(string email, string passwordHash);
         SkaterVM SelectSkaterVMByDerbyName(string derbyName);
         List<string> SelectRolesByDerbyName(string derbyName);
-        int addSkater(string SkaterID, string TeamID, string GivenName, string FamilyName, string Phone, string email);
+
         int UpdatePasswordHash(string derbyName, string oldPasswordHash, string newPasswordHash);
+        int addSkater(SkaterVM _Skater);
+        List<SkaterVM> selectAllSkater();
+        int updateSkater(Skater _oldSkater, Skater _newSkater);
+        int deleteSkater(Skater _Skater);
+        int undeleteSkater(Skater _Skater);
+        List<String> selectAllApplicationStatus();
     }
 }

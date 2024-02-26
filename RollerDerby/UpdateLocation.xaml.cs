@@ -3,6 +3,7 @@ using LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 
 namespace RollerDerby
 {
@@ -23,6 +24,7 @@ namespace RollerDerby
 
         public UpdateLocation(Location L)
         {
+            //if an object is passed in, start in edit mode
             InitializeComponent();
             fillComboBox();
             _location = L;
@@ -47,7 +49,7 @@ namespace RollerDerby
         }
 
         private void fillComboBox()
-        {
+        {//grab the needed FK data
 
             List<string> LeagueNames = new List<string>();
             foreach (League _league in MainWindow.allLeagues)
@@ -99,13 +101,13 @@ namespace RollerDerby
                 if (validInputs())
                 {
                     Location _newLocation = new Location();
-                _newLocation.City = tbxoldLocationCity.Text;
-                _newLocation.LocationId = tbxoldLocationName.Text;
-                _newLocation.State = cbxoldLocationState.Text;
-                _newLocation.ZipCode = tbxoldLocationZip.Text;
-                _newLocation.LeagueID = cbxoldLocationLeague.Text;
-                _newLocation.ContactPhone = tbxoldLocationPhone.Text;
-                
+                    _newLocation.City = tbxoldLocationCity.Text;
+                    _newLocation.LocationId = tbxoldLocationName.Text;
+                    _newLocation.State = cbxoldLocationState.Text;
+                    _newLocation.ZipCode = tbxoldLocationZip.Text;
+                    _newLocation.LeagueID = cbxoldLocationLeague.Text;
+                    _newLocation.ContactPhone = tbxoldLocationPhone.Text;
+
                     try
                     {
                         int result = MainWindow._locationmanager.updateLocation(_location, _newLocation);
@@ -177,13 +179,13 @@ namespace RollerDerby
                 if (validInputs())
                 {
                     Location _newLocation = new Location();
-                _newLocation.City = tbxoldLocationCity.Text;
-                _newLocation.LocationId = tbxoldLocationName.Text;
-                _newLocation.State = cbxoldLocationState.Text;
-                _newLocation.ZipCode = tbxoldLocationZip.Text;
-                _newLocation.LeagueID = cbxoldLocationLeague.Text;
-                _newLocation.ContactPhone = tbxoldLocationPhone.Text;
-                
+                    _newLocation.City = tbxoldLocationCity.Text;
+                    _newLocation.LocationId = tbxoldLocationName.Text;
+                    _newLocation.State = cbxoldLocationState.Text;
+                    _newLocation.ZipCode = tbxoldLocationZip.Text;
+                    _newLocation.LeagueID = cbxoldLocationLeague.Text;
+                    _newLocation.ContactPhone = tbxoldLocationPhone.Text;
+
                     try
                     {
                         bool result = _lm.AddLocation(_newLocation);

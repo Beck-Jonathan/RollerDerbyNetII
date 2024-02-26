@@ -1,8 +1,8 @@
 ﻿using DataAccessInterfaces;
 using DataAccessLayer;
-using DataObjects;
 using System;
 using System.Collections.Generic;
+using DataObjects;
 
 namespace LogicLayer
 {
@@ -121,6 +121,21 @@ namespace LogicLayer
 
 
             return result;
+        }
+
+        public List<SkaterTeamApplication> getSkaterTeamApplicationBySkaterID(Skater _skater)
+        {
+            List<SkaterTeamApplication> values = new List<SkaterTeamApplication>();
+            try
+            {
+                values = _applicationAccessor.selectSkaterTeamApplicationBySkaterID(_skater);
+            }
+            catch (Exception ex)
+            {
+
+                throw new ApplicationException("Applications not found", ex);
+            }
+            return values;
         }
     }
 }

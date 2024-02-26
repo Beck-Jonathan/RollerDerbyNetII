@@ -42,12 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GearApplicationFakes.cs" />
+    <Compile Include="GearRequestFakes.cs" />
     <Compile Include="LeagueAccessorFakes.cs" />
     <Compile Include="LocationAccessorFakes.cs" />
     <Compile Include="SkaterAccessorFake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SkaterTeamApplicationFakes.cs" />
     <Compile Include="TeamAccessorFakes.cs" />
+    <Compile Include="TeamApplicationFakes.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj">

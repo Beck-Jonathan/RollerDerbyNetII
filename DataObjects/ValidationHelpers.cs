@@ -1,4 +1,6 @@
-﻿namespace DataObjects
+﻿using System.Net.Mail;
+
+namespace DataObjects
 {
     // this class will hold extention helpers
     // they must be in a public static class
@@ -95,6 +97,27 @@
             }
 
             return isValid;
+
+        }
+        public static bool isValidEmail(this string _email)
+        {
+            var valid = true;
+
+            try
+            {
+                var emailAddress = new MailAddress(_email);
+            }
+            catch
+            {
+                valid = false;
+            }
+            if (_email.Length < 8 && _email.Length > 250)
+            {
+                valid = false;
+            }
+
+            return valid;
+
 
         }
     }

@@ -45,6 +45,9 @@
     <Compile Include="exercise_practice_lineAccessor.cs" />
     <Compile Include="GameAccessor.cs" />
     <Compile Include="Game_Team_LineAccessor.cs" />
+    <Compile Include="GearApplicationAccessor.cs" />
+    <Compile Include="GearInventoryAccessor.cs" />
+    <Compile Include="GearRequestAccessor.cs" />
     <Compile Include="InvoiceAccessor.cs" />
     <Compile Include="LeagueAccessor.cs" />
     <Compile Include="LocationAccessor.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Skater_Role_LineAccessor.cs" />
     <Compile Include="SqlConnectionProvider.cs" />
     <Compile Include="TeamAccessor.cs" />
+    <Compile Include="TeamApplicationAccessor.cs" />
     <Compile Include="testClass.cs" />
     <Compile Include="WFTDADataSet.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -1,6 +1,5 @@
-﻿using DataObjects;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using DataObjects;
 namespace LogicLayer
 {
     public interface ISkaterteamApplicationManager
@@ -10,5 +9,7 @@ namespace LogicLayer
         List<SkaterTeamApplication> getAllSkaterteamApplication();
         int editSkaterteamApplication(SkaterTeamApplication _oldSkaterteamApplication, SkaterTeamApplication _newSkaterteamApplication);
         int purgeSkaterteamApplication(int SkaterteamApplicationID);
+
+        List<SkaterTeamApplication> getSkaterTeamApplicationBySkaterID(Skater skater);
     }
 }

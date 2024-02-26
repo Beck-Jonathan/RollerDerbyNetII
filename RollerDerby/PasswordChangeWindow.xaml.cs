@@ -22,12 +22,13 @@ namespace RollerDerby
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-
+            //try to update pw in database
             string oldPW = pwdOldPW.Password;
             string newPW1 = pwdNewPW.Password;
             string newPW2 = pwdConfirmPW.Password;
             try
             {
+                //don't allow newUser as password
                 if (newPW1 == "newUser")
                 {
                     MessageBox.Show("You can not set this as your password");

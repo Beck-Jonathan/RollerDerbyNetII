@@ -63,7 +63,7 @@ namespace DataAccessLayer
 
             return rows;
         }
-
+        
         public SkaterVM SelectSkaterVMByDerbyName(string derbyName)
         {
             SkaterVM skaterVM = new SkaterVM();
@@ -96,7 +96,8 @@ namespace DataAccessLayer
                         skaterVM.FamilyName = reader.GetString(2);
                         skaterVM.Phone = reader.GetString(3);
                         skaterVM.Email = reader.GetString(4);
-                        skaterVM.Active = reader.GetBoolean(6);
+                        skaterVM.TeamID = reader.GetString(5);
+                        skaterVM.Active = reader.GetBoolean(7);
 
                         //skaterVM.Active = reader.GetBoolean(5);
                     }
@@ -116,7 +117,7 @@ namespace DataAccessLayer
             }
             return skaterVM;
         }
-
+        
         public List<string> SelectRolesByDerbyName(string derbyName)
         {
             List<string> roles = new List<string>();
@@ -203,7 +204,7 @@ namespace DataAccessLayer
             return rows;
         }
 
-        public int addSkater(string SkaterID, string TeamID, string GivenName, string FamilyName, string Phone, string email)
+        public int addSkater(SkaterVM _Skater)
         {
             int rows = 0;
             // start with a connection object
@@ -216,20 +217,20 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@TeamID", SqlDbType.NVarChar, 50);
+            
             cmd.Parameters.Add("@GivenName", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FamilyName", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@Phone", SqlDbType.NVarChar, 11);
+            cmd.Parameters.Add("@Phone", SqlDbType.NVarChar, 13);
             cmd.Parameters.Add("@email", SqlDbType.NVarChar, 250);
 
 
             //We need to set the parameter values
-            cmd.Parameters["@SkaterID"].Value = SkaterID;
-            cmd.Parameters["@TeamID"].Value = TeamID;
-            cmd.Parameters["@GivenName"].Value = GivenName;
-            cmd.Parameters["@FamilyName"].Value = FamilyName;
-            cmd.Parameters["@Phone"].Value = Phone;
-            cmd.Parameters["@email"].Value = email;
+            cmd.Parameters["@SkaterID"].Value = _Skater.SkaterID;
+           
+            cmd.Parameters["@GivenName"].Value = _Skater.GivenName;
+            cmd.Parameters["@FamilyName"].Value = _Skater.FamilyName;
+            cmd.Parameters["@Phone"].Value = _Skater.Phone;
+            cmd.Parameters["@email"].Value = _Skater.Email;
 
             try
             {
@@ -249,9 +250,9 @@ namespace DataAccessLayer
             return rows;
         }
 
-        public List<Skater> selectAllSkater()
+        public List<SkaterVM> selectAllSkater()
         {
-            List<Skater> output = new List<Skater>();
+            List<SkaterVM> output = new List<SkaterVM>();
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
@@ -271,7 +272,7 @@ namespace DataAccessLayer
                 {
                     while (reader.Read())
                     {
-                        var _Skater = new Skater();
+                        var _Skater = new SkaterVM();
                         _Skater.SkaterID = reader.GetString(0);
                         _Skater.TeamID = reader.GetString(1);
                         _Skater.GivenName = reader.GetString(2);
@@ -294,7 +295,7 @@ namespace DataAccessLayer
             }
             return output;
         }
-        public int updateSkater(string oldSkaterID, string oldTeamID, string oldGivenName, string oldFamilyName, string oldPhone, string oldemail, string oldpasswordhash, bool oldactive, string newTeamID, string newGivenName, string newFamilyName, string newPhone, string newemail, string newpasswordhash, bool newactive)
+        public int updateSkater(Skater _oldSkater, Skater _newSkater)
         {
             int rows = 0;
             // start with a connection object
@@ -314,32 +315,30 @@ namespace DataAccessLayer
             cmd.Parameters.Add("@newGivenName", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@oldFamilyName", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@newFamilyName", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@oldPhone", SqlDbType.NVarChar, 11);
-            cmd.Parameters.Add("@newPhone", SqlDbType.NVarChar, 11);
+            cmd.Parameters.Add("@oldPhone", SqlDbType.NVarChar, 13);
+            cmd.Parameters.Add("@newPhone", SqlDbType.NVarChar, 13);
             cmd.Parameters.Add("@oldemail", SqlDbType.NVarChar, 250);
             cmd.Parameters.Add("@newemail", SqlDbType.NVarChar, 250);
-            cmd.Parameters.Add("@oldpasswordhash", SqlDbType.NVarChar, 256);
-            cmd.Parameters.Add("@newpasswordhash", SqlDbType.NVarChar, 256);
-            cmd.Parameters.Add("@oldactive", SqlDbType.Bit);
-            cmd.Parameters.Add("@newactive", SqlDbType.Bit);
+
+
+
+
 
             //We need to set the parameter values
-            cmd.Parameters["@oldSkaterID"].Value = oldSkaterID;
+            cmd.Parameters["@oldSkaterID"].Value = _oldSkater.SkaterID;
 
-            cmd.Parameters["@oldTeamID"].Value = oldTeamID;
-            cmd.Parameters["@newTeamID"].Value = newTeamID;
-            cmd.Parameters["@oldGivenName"].Value = oldGivenName;
-            cmd.Parameters["@newGivenName"].Value = newGivenName;
-            cmd.Parameters["@oldFamilyName"].Value = oldFamilyName;
-            cmd.Parameters["@newFamilyName"].Value = newFamilyName;
-            cmd.Parameters["@oldPhone"].Value = oldPhone;
-            cmd.Parameters["@newPhone"].Value = newPhone;
-            cmd.Parameters["@oldemail"].Value = oldemail;
-            cmd.Parameters["@newemail"].Value = newemail;
-            cmd.Parameters["@oldpasswordhash"].Value = oldpasswordhash;
-            cmd.Parameters["@newpasswordhash"].Value = newpasswordhash;
-            cmd.Parameters["@oldactive"].Value = oldactive;
-            cmd.Parameters["@newactive"].Value = newactive;
+            cmd.Parameters["@oldTeamID"].Value = _oldSkater.TeamID;
+            cmd.Parameters["@newTeamID"].Value = _newSkater.TeamID;
+            cmd.Parameters["@oldGivenName"].Value = _oldSkater.GivenName;
+            cmd.Parameters["@newGivenName"].Value = _newSkater.GivenName;
+            cmd.Parameters["@oldFamilyName"].Value = _oldSkater.FamilyName;
+            cmd.Parameters["@newFamilyName"].Value = _newSkater.FamilyName;
+            cmd.Parameters["@oldPhone"].Value = _oldSkater.Phone;
+            cmd.Parameters["@newPhone"].Value = _newSkater.Phone;
+            cmd.Parameters["@oldemail"].Value = _oldSkater.Email;
+            cmd.Parameters["@newemail"].Value = _newSkater.Email;
+
+
             try
             {
                 //open the connection 
@@ -361,7 +360,7 @@ namespace DataAccessLayer
             }
             return rows;
         }
-        public int deleteSkater(string SkaterID)
+        public int deleteSkater(Skater _skater)
         {
             int rows = 0;
             // start with a connection object
@@ -373,8 +372,9 @@ namespace DataAccessLayer
             // set the command type
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
+            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
             //set parameter!!!
-            cmd.Parameters["@SkaterID"].Value = SkaterID;
+            cmd.Parameters["@SkaterID"].Value = _skater.SkaterID;
             try
             {
                 conn.Open();
@@ -393,6 +393,78 @@ namespace DataAccessLayer
                 conn.Close();
             }
             return rows;
+        }
+
+
+        public int undeleteSkater(Skater _Skater)
+        {
+
+            int rows = 0;
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_undelete_Skater";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // we need to add parameters to the command
+            //set parameter!!!
+            cmd.Parameters["@SkaterID"].Value = _Skater.SkaterID;
+            try
+            {
+                conn.Open();
+                rows = cmd.ExecuteNonQuery(); if (rows == 0)
+                {
+                    //treat failed delete as exepction
+                    throw new ArgumentException("Invalid Primary Key");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return rows;
+        }
+        public List<String> selectAllApplicationStatus()
+        {
+            List<String> output = new List<String>();
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_retreive_by_all_ApplicationStatus";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // There are no parameters to set or add
+            try
+            {
+                //open the connection 
+                conn.Open();  //execute the command and capture result
+                var reader = cmd.ExecuteReader();
+                //process the results
+                if (reader.HasRows)
+                    while (reader.Read())
+                    {
+                        var _ApplicationStatus = "";
+                        _ApplicationStatus = reader.GetString(0);
+                        output.Add(_ApplicationStatus);
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return output;
         }
     }
 }

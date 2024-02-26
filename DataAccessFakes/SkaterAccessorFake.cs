@@ -11,6 +11,7 @@ namespace DataAccessFakes
         // create a few fake skaters for testing
         private List<SkaterVM> fakeSkaters = new List<SkaterVM>();
         private List<string> passwordHashes = new List<string>();
+        private List<Skater> deletedSkaters = new List<Skater>();
 
         public SkaterAccessorFake()
         {
@@ -106,13 +107,7 @@ namespace DataAccessFakes
             }
         }
 
-        public int addSkater(string SkaterID, string TeamID, string GivenName, string FamilyName, string Phone, string email)
-        {
-            int x = 0;
 
-            return x;
-
-        }
 
         public int UpdatePasswordHash(string derbyName, string oldPasswordHash, string newPasswordHash)
         {
@@ -140,6 +135,85 @@ namespace DataAccessFakes
 
 
             return rows;
+        }
+
+        public int addSkater(SkaterVM _Skater)
+        {
+            int starting = fakeSkaters.Count;
+            fakeSkaters.Add(_Skater);
+            int ending = fakeSkaters.Count;
+            return ending - starting;
+        }
+
+        public List<SkaterVM> selectAllSkater()
+        {
+            return fakeSkaters;
+        }
+
+        public int updateSkater(Skater _oldSkater, Skater _newSkater)
+        {
+            int result = 0;
+            foreach (Skater _skt in fakeSkaters)
+            {
+                if (_skt.SkaterID == _oldSkater.SkaterID)
+                {
+                    _skt.SkaterID = _newSkater.SkaterID;
+                    _skt.TeamID = _newSkater.TeamID;
+                    _skt.FamilyName = _newSkater.FamilyName;
+                    _skt.GivenName = _newSkater.GivenName;
+                    _skt.Phone = _newSkater.Phone;
+                    _skt.Email = _newSkater.Email;
+                    _skt.Active = _newSkater.Active;
+                    result++;
+
+                }
+
+            }
+            return result;
+        }
+
+        public int deleteSkater(Skater _Skater)
+        {
+            int result = 0;
+
+            for (int i = 0; i < fakeSkaters.Count; i++)
+            {
+                if (fakeSkaters[i].SkaterID == _Skater.SkaterID)
+                {
+                    fakeSkaters.RemoveAt(i);
+                    deletedSkaters.Add(_Skater);
+                    result = 1;
+                    break;
+
+                }
+            }
+            if (result == 0) { throw new ArgumentException("skater not found"); }
+
+            return result;
+        }
+
+        public int undeleteSkater(Skater _Skater)
+        {
+            int result = 0;
+            for (int i = 0; i < fakeSkaters.Count; i++)
+            {
+                if (deletedSkaters[i].SkaterID == _Skater.SkaterID)
+                {
+                    deletedSkaters.RemoveAt(i);
+                    //fakeSkaters.Add((SkaterVM)_Skater);
+                    result = 1;
+                    break;
+
+                }
+            }
+            if (result == 0) { throw new ArgumentException("skater not found"); }
+
+            return result;
+        }
+
+        public List<string> selectAllApplicationStatus()
+        {
+            throw new NotImplementedException();
         }
     }
 }

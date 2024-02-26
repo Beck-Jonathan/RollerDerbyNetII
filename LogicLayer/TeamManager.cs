@@ -3,6 +3,7 @@ using DataAccessLayer;
 using DataObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace LogicLayer
 {
@@ -23,6 +24,7 @@ namespace LogicLayer
             _teamAccessor = teamAccessor;
 
         }
+        //this function will add a team
         public bool addTeam(Team _team)
         {
             bool result = false;
@@ -36,7 +38,7 @@ namespace LogicLayer
             }
             return result;
         }
-
+        //this function will edit an existing team
         public int editTeam(Team _old, Team _new)
         {
             int result = 0;
@@ -52,7 +54,7 @@ namespace LogicLayer
             }
             return result;
         }
-
+        //this function will grab all teams
         public List<Team> getAllTeam()
         {
             List<Team> results = null;
@@ -67,7 +69,7 @@ namespace LogicLayer
             }
             return results;
         }
-
+        //this function will great teams by team id
         public Team getTeamByPrimaryKey(string TeamID)
         {
             Team team = null;
@@ -82,7 +84,7 @@ namespace LogicLayer
             }
             return team;
         }
-
+        //this function will mark a team as inactive
         public int purgeTeam(string TeamID)
         {
             int result = 0;

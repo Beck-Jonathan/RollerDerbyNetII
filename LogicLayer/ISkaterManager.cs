@@ -14,6 +14,13 @@ namespace LogicLayer
         List<string> getRolesBySkaterDerbyName(string derbyName);
         bool resetPassword(string derbyName, string oldPassword, string newPassword);
 
+        int addSkater(SkaterVM _Skater);
+        List<SkaterVM> getAllSkater();
+        int editSkater(Skater _oldSkater, Skater _newSkater);
+        int purgeSkater(Skater _skater);
+        int unpurgeSkater(Skater _skater);
+        List<string> getAllApplicationStatus();
+
 
 
     }
