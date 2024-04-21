@@ -13,7 +13,7 @@ namespace RollerDerby
         {
             InitializeComponent();
         }
-        
+
         private void btnCreateLeague_Click(object sender, RoutedEventArgs e)
         { //open a new create league window
             Window createLeague = new UpdateLeague();

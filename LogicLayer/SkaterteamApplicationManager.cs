@@ -1,8 +1,8 @@
 ﻿using DataAccessInterfaces;
 using DataAccessLayer;
+using DataObjects;
 using System;
 using System.Collections.Generic;
-using DataObjects;
 
 namespace LogicLayer
 {

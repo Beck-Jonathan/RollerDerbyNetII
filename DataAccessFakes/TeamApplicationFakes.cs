@@ -2,9 +2,6 @@
 using DataObjects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 
@@ -60,10 +57,11 @@ namespace DataAccessFakes
             int result = 0;
             foreach (TeamApplication teamApplication in fakeApplications)
             {
-                if (teamApplication.TeamApplicationID == primaryKey) {
+                if (teamApplication.TeamApplicationID == primaryKey)
+                {
                     returnApplication = teamApplication;
                     result = 1;
-                return returnApplication;
+                    return returnApplication;
                 }
 
 
@@ -75,15 +73,17 @@ namespace DataAccessFakes
         public int updateTeamApplication(TeamApplication _oldTeamApplication, TeamApplication _newTeamApplication)
         {
             int result = 0;
-            foreach (TeamApplication teamApplication in fakeApplications) {
-                if (teamApplication.TeamApplicationID == _oldTeamApplication.TeamApplicationID) { 
-                teamApplication.ApplicationStatus=_newTeamApplication.ApplicationStatus;
+            foreach (TeamApplication teamApplication in fakeApplications)
+            {
+                if (teamApplication.TeamApplicationID == _oldTeamApplication.TeamApplicationID)
+                {
+                    teamApplication.ApplicationStatus = _newTeamApplication.ApplicationStatus;
                     result = 1;
-                
+
                 }
-            
-            } 
-            if(result == 0) { throw new ApplicationException(); }
+
+            }
+            if (result == 0) { throw new ApplicationException(); }
 
 
 

@@ -76,7 +76,7 @@ namespace RollerDerby
                 var _Location = datLocations.SelectedItem as Location;
                 try
                 {
-                    int result = MainWindow._locationmanager.deleteLocation(_Location.LocationId);
+                    int result = MainWindow._locationmanager.deleteLocation(_Location.LocationID);
                     if (result == 1)
                     {
                         MessageBox.Show("Locaiton Deleted");

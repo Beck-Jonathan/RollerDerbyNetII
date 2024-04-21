@@ -20,7 +20,7 @@ namespace DataAccessLayer
             // set the command type
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
-            
+
             cmd.Parameters.Add("@HelmSize", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@WristGuardSize", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@ElbowPadSize", SqlDbType.NVarChar, 25);
@@ -28,7 +28,7 @@ namespace DataAccessLayer
             cmd.Parameters.Add("@SkateSize", SqlDbType.NVarChar, 25);
 
             //We need to set the parameter values
-            
+
             cmd.Parameters["@HelmSize"].Value = _gearrequest.HelmSize;
             cmd.Parameters["@WristGuardSize"].Value = _gearrequest.WristGuardSize;
             cmd.Parameters["@ElbowPadSize"].Value = _gearrequest.ElbowPadSize;

@@ -31,13 +31,14 @@ namespace RollerDerby
             List<SkaterVM> thisTeamsSkaters = new List<SkaterVM>();
             grabAllSkaters();
             btnCreateSkater.Visibility = Visibility.Hidden;
-            btnDeleteSkater.Visibility = Visibility.Hidden; 
+            btnDeleteSkater.Visibility = Visibility.Hidden;
             btnUpdateSkater.Visibility = Visibility.Hidden;
             foreach (SkaterVM skater in allSkaters)
             {
-                if (skater.TeamID == coach.TeamID) { 
-                thisTeamsSkaters.Add(skater);
-                
+                if (skater.TeamID == coach.TeamID)
+                {
+                    thisTeamsSkaters.Add(skater);
+
                 }
 
 

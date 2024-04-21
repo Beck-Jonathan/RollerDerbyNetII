@@ -3,7 +3,6 @@ using LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
 
 namespace RollerDerby
 {
@@ -36,10 +35,10 @@ namespace RollerDerby
             cbxoldLocationState.IsEnabled = false;
             tbxoldLocationZip.IsEnabled = false;
             tbxoldLocationCity.Text = _location.City;
-            tbxoldLocationName.Text = _location.LocationId;
+            tbxoldLocationName.Text = _location.LocationID;
             tbxoldLocationPhone.Text = _location.ContactPhone;
             cbxoldLocationState.Text = _location.State;
-            tbxoldLocationZip.Text = _location.ZipCode;
+            tbxoldLocationZip.Text = _location.Zip;
             cbxoldLocationLeague.Text = _location.LeagueID;
 
 
@@ -102,9 +101,9 @@ namespace RollerDerby
                 {
                     Location _newLocation = new Location();
                     _newLocation.City = tbxoldLocationCity.Text;
-                    _newLocation.LocationId = tbxoldLocationName.Text;
+                    _newLocation.LocationID = tbxoldLocationName.Text;
                     _newLocation.State = cbxoldLocationState.Text;
-                    _newLocation.ZipCode = tbxoldLocationZip.Text;
+                    _newLocation.Zip = tbxoldLocationZip.Text;
                     _newLocation.LeagueID = cbxoldLocationLeague.Text;
                     _newLocation.ContactPhone = tbxoldLocationPhone.Text;
 
@@ -180,9 +179,9 @@ namespace RollerDerby
                 {
                     Location _newLocation = new Location();
                     _newLocation.City = tbxoldLocationCity.Text;
-                    _newLocation.LocationId = tbxoldLocationName.Text;
+                    _newLocation.LocationID = tbxoldLocationName.Text;
                     _newLocation.State = cbxoldLocationState.Text;
-                    _newLocation.ZipCode = tbxoldLocationZip.Text;
+                    _newLocation.Zip = tbxoldLocationZip.Text;
                     _newLocation.LeagueID = cbxoldLocationLeague.Text;
                     _newLocation.ContactPhone = tbxoldLocationPhone.Text;
 

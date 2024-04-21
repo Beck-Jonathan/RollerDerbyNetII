@@ -46,9 +46,9 @@ namespace DataAccessLayer
             }
             return rows;
         }
-        public Practice selectPracticeByPrimaryKey(int PracticeID)
+        public Event selectPracticeByPrimaryKey(int PracticeID)
         {
-            Practice output = new Practice();
+            Event output = new Event();
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
@@ -72,7 +72,7 @@ namespace DataAccessLayer
                 {
                     while (reader.Read())
                     {
-                        output.PracticeID = reader.GetInt32(0);
+                        output.EventID = reader.GetInt32(0);
                         output.LocationID = reader.GetString(1);
                         output.DateTime = reader.GetDateTime(2);
 
@@ -93,9 +93,9 @@ namespace DataAccessLayer
             }
             return output;
         }
-        public List<Practice> selectAllPractice()
+        public List<Event> selectAllPractice()
         {
-            List<Practice> output = new List<Practice>();
+            List<Event> output = new List<Event>();
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
@@ -115,8 +115,8 @@ namespace DataAccessLayer
                 {
                     while (reader.Read())
                     {
-                        var _Practice = new Practice();
-                        _Practice.PracticeID = reader.GetInt32(0);
+                        var _Practice = new Event();
+                        _Practice.EventID = reader.GetInt32(0);
                         _Practice.LocationID = reader.GetString(1);
                         _Practice.DateTime = reader.GetDateTime(2);
                         output.Add(_Practice);

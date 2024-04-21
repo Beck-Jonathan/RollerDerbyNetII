@@ -178,7 +178,7 @@ namespace UnitTestProject1
             int actual = 0;
             SkaterVM newbie = new SkaterVM();
             newbie.SkaterID = "Bennie";
-            
+
             _skaterManager.addSkater(newbie);
 
             //act

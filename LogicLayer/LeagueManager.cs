@@ -51,6 +51,8 @@ namespace LogicLayer
 
             return result;
         }
+
+
         //this function will grab all leagues
         public List<League> getAllLeague()
         {
@@ -66,6 +68,8 @@ namespace LogicLayer
             }
             return results;
         }
+
+
         //this function will get a league by league id
         public League getLeagueByPrimaryKey(string LeagueID)
         {

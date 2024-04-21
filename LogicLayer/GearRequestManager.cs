@@ -2,10 +2,6 @@
 using DataAccessLayer;
 using DataObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogicLayer
 {
@@ -32,7 +28,7 @@ namespace LogicLayer
             int result = 0;
             try
             {
-                result=_gearRequestAccessor.addGearRequest(_GearRequest);
+                result = _gearRequestAccessor.addGearRequest(_GearRequest);
                 if (result == 0) { throw new ApplicationException(); }
             }
             catch (Exception ex)

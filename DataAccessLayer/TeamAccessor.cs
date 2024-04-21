@@ -241,5 +241,42 @@ namespace DataAccessLayer
             }
             return rows;
         }
+        public List<String> selectDistinctTeamForDropDown()
+        {
+            List<String> output = new List<String>();
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_select_distinct_and_active_Team_for_dropdownTeam";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // There are no parameters to set or add
+            try
+            {
+                //open the connection 
+                conn.Open();  //execute the command and capture result
+                var reader = cmd.ExecuteReader();
+                //process the results
+                if (reader.HasRows)
+                    while (reader.Read())
+                    {
+                        String _Team = reader.GetString(0);
+                        output.Add(_Team);
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return output;
+        }
     }
+
 }
+

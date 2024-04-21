@@ -3,27 +3,25 @@ using DataAccessLayer;
 using DataObjects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogicLayer
 {
-    public class GearApplicationManager : IGearApplicationManager { 
+    public class GearApplicationManager : IGearApplicationManager
+    {
 
-         private IGearApplicationAccessor _gearAccessor = null;
+        private IGearApplicationAccessor _gearAccessor = null;
 
         public GearApplicationManager()
         {
             _gearAccessor = new GearApplicationAccessor();
-    
 
-                }
 
-    public GearApplicationManager(IGearApplicationAccessor gearAccessor)
-    {
-        _gearAccessor = gearAccessor;
-    }
+        }
+
+        public GearApplicationManager(IGearApplicationAccessor gearAccessor)
+        {
+            _gearAccessor = gearAccessor;
+        }
         //this function will add a gear application
         public int addGearApplication(GearApplication _GearApplication)
         {
@@ -48,7 +46,7 @@ namespace LogicLayer
             try
             {
                 result = _gearAccessor.updateGearApplication(_oldGearApplication, _newGearApplication);
-                if (result==0) { throw new ApplicationException(); }
+                if (result == 0) { throw new ApplicationException(); }
             }
             catch (Exception ex)
             {
@@ -82,7 +80,7 @@ namespace LogicLayer
             try
             {
                 ga = _gearAccessor.selectGearApplicationByPrimaryKey(GearApplicationID);
-                if ( ga==null)
+                if (ga == null)
                 {
                     throw new ApplicationException();
                 }

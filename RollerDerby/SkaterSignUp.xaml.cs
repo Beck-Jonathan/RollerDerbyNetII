@@ -1,18 +1,7 @@
-﻿using LogicLayer;
+﻿using DataObjects;
+using LogicLayer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using DataObjects;
 
 namespace RollerDerby
 {
@@ -37,21 +26,23 @@ namespace RollerDerby
             _sm = new SkaterManager();
         }
 
-        private bool isValid() {
+        private bool isValid()
+        {
             //test all inputs were filled in proerply
             return tbxSkateremail.Text.isValidEmail()
                     && tbxSkaterFamilyName.Text.isValidNVarChar50()
                     && tbxSkaterGivenName.Text.isValidNVarChar50()
                     && tbxSkaterPhone.Text.isValidPhone()
                     && tbxSkaterSkaterID.Text.isValidNVarChar50();
-        
-        
+
+
         }
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
             //validate inputs, then create new user
-            if (isValid()) {
+            if (isValid())
+            {
                 int result = 0;
                 SkaterVM _skater = new SkaterVM();
                 _skater.SkaterID = tbxSkaterSkaterID.Text;
@@ -73,9 +64,9 @@ namespace RollerDerby
                     MessageBox.Show("Unable to register user");
                     this.DialogResult = false;
                 }
-            
-            
-            
+
+
+
             }
             else { MessageBox.Show("Invalid inputs"); }
         }

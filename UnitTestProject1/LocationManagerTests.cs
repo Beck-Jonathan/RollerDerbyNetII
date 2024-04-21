@@ -24,23 +24,23 @@ namespace UnitTestProject1
             //arrage
             string LocationID = "x";
             Location location1 = new Location();
-            location1.LocationId = "Imon";
+            location1.LocationID = "Imon";
             location1.LeagueID = "WFTDA";
             location1.ContactPhone = "111-123-2134";
             location1.City = "Cedar Rapids";
             location1.State = "Iowa";
-            location1.ZipCode = "52405";
+            location1.Zip = "52405";
             Location actual = null;
             //act
-            actual = _locationmanager.SelectLocationByLocationID(location1.LocationId);
+            actual = _locationmanager.SelectLocationByLocationID(location1.LocationID);
 
             //assert
-            Assert.AreEqual(location1.LocationId, actual.LocationId);
+            Assert.AreEqual(location1.LocationID, actual.LocationID);
             Assert.AreEqual(location1.LeagueID, actual.LeagueID);
             Assert.AreEqual(location1.ContactPhone, actual.ContactPhone);
             Assert.AreEqual(location1.City, actual.City);
             Assert.AreEqual(location1.State, actual.State);
-            Assert.AreEqual(location1.ZipCode, actual.ZipCode);
+            Assert.AreEqual(location1.Zip, actual.Zip);
 
         }
         [TestMethod]
@@ -86,8 +86,8 @@ namespace UnitTestProject1
             string ZipCode = "45521";
             Location _location = new Location();
             _location.State = State;
-            _location.ZipCode = ZipCode;
-            _location.LocationId = LocationId;
+            _location.Zip = ZipCode;
+            _location.LocationID = LocationId;
             _location.City = City;
             _location.LeagueID = LeagueID;
             _location.ContactPhone = ContactPhone;

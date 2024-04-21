@@ -6,11 +6,13 @@ namespace DataAccessInterfaces
 {
     public interface IInvoiceAccessor
     {
-        int insertInvoice(int InvoiceID, string SkaterID, float InvoiceAmount, DateTime IssueDate);
+        int addInvoice(Invoice _Invoice);
         Invoice selectInvoiceByPrimaryKey(int InvoiceID);
         List<Invoice> selectAllInvoice();
-        int updateInvoice(int oldInvoiceID, string oldSkaterID, float oldInvoiceAmount, DateTime oldIssueDate, string newSkaterID, float newInvoiceAmount, DateTime newIssueDate);
-        int deleteInvoice(string InvoiceID);
+        int updateInvoice(Invoice _oldInvoice , Invoice _newInvoice);
+        int deleteInvoice(Invoice _Invoice);
+        int undeleteInvoice(Invoice _Invoice);
+        List<String> selectDistinctSkaterForDropDown();
     }
 
 }

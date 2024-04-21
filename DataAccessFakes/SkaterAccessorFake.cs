@@ -12,6 +12,8 @@ namespace DataAccessFakes
         private List<SkaterVM> fakeSkaters = new List<SkaterVM>();
         private List<string> passwordHashes = new List<string>();
         private List<Skater> deletedSkaters = new List<Skater>();
+        private List<String> status = new List<string>();
+        List<string> roles = new List<string>();    
 
         public SkaterAccessorFake()
         {
@@ -49,6 +51,12 @@ namespace DataAccessFakes
             passwordHashes.Add("9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e");
             passwordHashes.Add("badhash");
             passwordHashes.Add("badhash");
+
+            status.Add("inactive");
+            status.Add("active");
+
+            roles.Add("Admin");
+            roles.Add("Skater");
 
             fakeSkaters[0].Roles.Add("TestRole1");
             fakeSkaters[0].Roles.Add("TestRole2");
@@ -213,7 +221,29 @@ namespace DataAccessFakes
 
         public List<string> selectAllApplicationStatus()
         {
-            throw new NotImplementedException();
+            return status;
+        }
+
+        public List<string> RetreiveSkaterRoles()
+        {
+            return roles;
+        }
+
+        public Skater selectSkaterByEmail(string email)
+        {
+            Skater result = new Skater();
+
+            foreach (Skater s in fakeSkaters) {
+                if (s.Email == email) { 
+                
+                }
+                result = s;
+                break;
+            
+            }
+
+
+            return result;
         }
     }
 }

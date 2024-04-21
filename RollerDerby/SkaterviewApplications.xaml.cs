@@ -2,17 +2,8 @@
 using LogicLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace RollerDerby
 {
@@ -30,7 +21,7 @@ namespace RollerDerby
             {
                 //if mode 0, that means you are logged in as  skater, and can view your gear
                 //and team applications
-             
+
                 String skatername = skt.SkaterID;
                 InitializeComponent();
                 btnViewInventory.Visibility = Visibility.Hidden;
@@ -45,7 +36,7 @@ namespace RollerDerby
 
 
 
-                
+
                 TeamApplicationManager TAM = new TeamApplicationManager();
                 GearApplicationManager GM = new GearApplicationManager();
                 List<GearApplication> allGearApplications = new List<GearApplication>();
@@ -93,9 +84,9 @@ namespace RollerDerby
                 datGearApplication.ItemsSource = parsedGearApplications;
                 datTeamApplications.ItemsSource = prasedTeamApplicaitons;
             }
-            if (mode==1)
+            if (mode == 1)
             {//if mode 1 you are logged in as a league admin, and you can see all gear requetss
-                
+
                 String teamname = _skater.TeamID;
                 InitializeComponent();
                 btnViewInventory.Visibility = Visibility.Hidden;
@@ -114,9 +105,9 @@ namespace RollerDerby
 
                     MessageBox.Show(ex.Message);
                 }
-               
+
                 List<TeamApplication> prasedTeamApplicaitons = new List<TeamApplication>();
-                
+
                 foreach (TeamApplication teamApplication in allTeamApplicaitons)
                 {
                     if (teamApplication.TeamName == teamname)
@@ -129,12 +120,12 @@ namespace RollerDerby
 
 
 
-               
+
                 datTeamApplications.ItemsSource = prasedTeamApplicaitons;
             }
             if (mode == 2)
             {//if mode 2, you are logged in as ateam admin, and can see all skater requests
-               
+
                 String skatername = skt.SkaterID;
                 InitializeComponent();
                 btnViewInventory.Visibility = Visibility.Visible;
@@ -156,7 +147,7 @@ namespace RollerDerby
                 }
 
                 datGearApplication.ItemsSource = allGearApplications;
-               
+
 
 
 
@@ -177,7 +168,8 @@ namespace RollerDerby
 
         private void datTeamApplications_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (modeselect == 1) {
+            if (modeselect == 1)
+            {
                 //if you are a team admin, you can view the detail of the team request
 
                 {
@@ -223,7 +215,7 @@ namespace RollerDerby
                         if (result)
                         {
                             MessageBox.Show("Update sucessful");
-                            
+
                             this.Close();
 
                         }

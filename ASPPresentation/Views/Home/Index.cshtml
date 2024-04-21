@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Derby Manager</h1>
+        <p class="lead">Derby Manager is a free and open source software to manage skaters, gear, events, and due collection for your roller derby league</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    </section>
+
+    <div class="row">
+        <section class="col-md-3" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">View our Teams</h2>
+            <div class="row">
+                <div class="col-md-10">
+                    <img class="img-fluid" src="~/images/Skating.png"><br />
+                </div>
+            </div>
+            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </section>
+        <section class="col-md-3" aria-labelledby="librariesTitle">
+            <h2 id="librariesTitle">Pay Your dues</h2>
+            <div class="row">
+                <div class="col-md-10">
+                    <img class="img-fluid" src="~/images/Money.png"><br />
+                </div>
+            </div>
+            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </section>
+        <section class="col-md-3" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Borrow Gear</h2>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <img class="img-fluid" src="~/images/Gear.png"><br />
+                </div>
+            </div>
+            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </section>
+        <section class="col-md-3" aria-labelledby="hostingTitle">
+            <h2 id="hostingTitle">Events</h2>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <img class="img-fluid" src="~/images/Gear.png"><br />
+                </div>
+            </div>
+            <p><a class="btn btn-outline-dark" @Html.ActionLink("Events","index","Event")">Learn more &raquo;</a></p>
+        </section>
+    </div>
+</main>

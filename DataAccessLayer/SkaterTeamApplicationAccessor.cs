@@ -1,10 +1,9 @@
 ﻿using DataAccessInterfaces;
+using DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using DataObjects;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccessLayer
 {
@@ -52,7 +51,7 @@ namespace DataAccessLayer
         public SkaterTeamApplication selectSkaterteamApplicationByPrimaryKey(int ApplicationID)
         {
             SkaterTeamApplication output = new SkaterTeamApplication();
-            
+
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
@@ -75,7 +74,7 @@ namespace DataAccessLayer
                 if (reader.HasRows)
                     if (reader.Read())
                     {
-                        
+
                         output.ApplicationID = reader.GetInt32(0);
                         output.skaterID = reader.GetString(1);
                         output.TeamName = reader.GetString(2);
@@ -220,7 +219,7 @@ namespace DataAccessLayer
 
         public List<SkaterTeamApplication> selectSkaterTeamApplicationBySkaterID(Skater skater)
         {
-           List<SkaterTeamApplication> output = new List <SkaterTeamApplication>();
+            List<SkaterTeamApplication> output = new List<SkaterTeamApplication>();
 
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
@@ -231,7 +230,7 @@ namespace DataAccessLayer
             // set the command type
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
-            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar,50);
+            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
 
             //We need to set the parameter values
             cmd.Parameters["@SkaterID"].Value = skater.SkaterID;
@@ -242,7 +241,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 //process the results
                 if (reader.HasRows)
-                { 
+                {
                     while (reader.Read())
                     {
                         var _SkaterteamApplication = new SkaterTeamApplication();
@@ -253,10 +252,10 @@ namespace DataAccessLayer
                         output.Add(_SkaterteamApplication);
                     }
                 }
-                    else
-                    {
-                        throw new ArgumentException("SkaterteamApplication not found");
-                    }
+                else
+                {
+                    throw new ArgumentException("SkaterteamApplication not found");
+                }
             }
             catch (Exception ex)
             {

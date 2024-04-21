@@ -317,7 +317,7 @@ namespace RollerDerby
         {
             Window Skaterapplyhere = new SkaterApply(loggedinSkater);
             //Window Apply = new SkaterApply(loggedinSkater);
-           var result = Skaterapplyhere.ShowDialog();
+            var result = Skaterapplyhere.ShowDialog();
 
         }
 
@@ -329,7 +329,7 @@ namespace RollerDerby
 
         private void btnViewApplications_Click(object sender, RoutedEventArgs e)
         {
-            Window SkaterViewApplications = new SkaterviewApplications(loggedinSkater,0);
+            Window SkaterViewApplications = new SkaterviewApplications(loggedinSkater, 0);
             var result = SkaterViewApplications.ShowDialog();
         }
 

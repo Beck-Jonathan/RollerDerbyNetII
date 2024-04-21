@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using DataObjects;
+﻿using DataObjects;
+using System.Collections.Generic;
 
 namespace DataAccessInterfaces
 {

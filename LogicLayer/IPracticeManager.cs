@@ -7,8 +7,8 @@ namespace LogicLayer
     public interface IPracticeManager
     {
         int addPractice(int PracticeID, string LocationID, DateTime DateTime);
-        Practice getPracticeByPrimaryKey(string PracticeID);
-        List<Practice> getAllPractice();
+        Event getPracticeByPrimaryKey(string PracticeID);
+        List<Event> getAllPractice();
         int editPractice(int oldPracticeID, string oldLocationID, DateTime oldDateTime, int newPracticeID, string newLocationID, DateTime newDateTime);
         int purgePractice(string PracticeID);
     }

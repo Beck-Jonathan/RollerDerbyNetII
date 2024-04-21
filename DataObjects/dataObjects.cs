@@ -1,7 +1,5 @@
-﻿using System;
-
-namespace DataObjects
-{  
+﻿namespace DataObjects
+{
 
 }
 

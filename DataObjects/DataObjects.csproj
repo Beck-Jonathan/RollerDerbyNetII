@@ -32,6 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\RollerDerby\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,7 +56,7 @@
     <Compile Include="Invoice.cs" />
     <Compile Include="League.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="Practice.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="Receipts.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Skater.cs" />
@@ -64,6 +68,10 @@
     <Compile Include="TeamApplication.cs" />
     <Compile Include="States.cs" />
     <Compile Include="ValidationHelpers.cs" />
+    <Compile Include="Workout.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

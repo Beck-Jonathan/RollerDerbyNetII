@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventAccessor.cs" />
     <Compile Include="ExerciseAccessor.cs" />
     <Compile Include="exercise_practice_lineAccessor.cs" />
     <Compile Include="GameAccessor.cs" />

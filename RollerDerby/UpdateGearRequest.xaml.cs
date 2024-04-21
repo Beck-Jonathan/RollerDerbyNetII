@@ -2,17 +2,7 @@
 using LogicLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace RollerDerby
 {
@@ -29,7 +19,7 @@ namespace RollerDerby
         public UpdateGearRequest(GearApplication ga)
         {   //take the gear application and get the gear request associated with it
             _gearApplication = ga;
-            _grm=new GearRequestManager();
+            _grm = new GearRequestManager();
             try
             {
                 _gear = _grm.getGearRequestByPrimaryKey(ga.GearReuestID);
@@ -39,29 +29,29 @@ namespace RollerDerby
 
                 MessageBox.Show(ex.Message);
             }
-            _sm=new SkaterManager();
-            _grm=new GearRequestManager();
+            _sm = new SkaterManager();
+            _grm = new GearRequestManager();
             InitializeComponent();
-            cbxElbowSize.Text=_gear.ElbowPadSize.ToString();
-            cbxHelmSize.Text=_gear.HelmSize.ToString();
-            cbxSkateSize.Text=_gear.SkateSize.ToString();
-            cbxKneeSize.Text=_gear.KneePadSize.ToString();
-            cbxWristSize.Text=_gear.WristGuardSize.ToString();
-            
+            cbxElbowSize.Text = _gear.ElbowPadSize.ToString();
+            cbxHelmSize.Text = _gear.HelmSize.ToString();
+            cbxSkateSize.Text = _gear.SkateSize.ToString();
+            cbxKneeSize.Text = _gear.KneePadSize.ToString();
+            cbxWristSize.Text = _gear.WristGuardSize.ToString();
+
 
 
 
 
             cbxElbowSize.IsEnabled = false;
             cbxHelmSize.IsEnabled = false;
-            cbxKneeSize.IsEnabled = false;  
+            cbxKneeSize.IsEnabled = false;
             cbxSkateSize.IsEnabled = false;
             cbxWristSize.IsEnabled = false;
             cbxStatus.IsEnabled = true;
             List<String> allStatus = new List<String>();
             try
             {
-                allStatus=_sm.getAllApplicationStatus();
+                allStatus = _sm.getAllApplicationStatus();
                 if (allStatus.Count == 0) { throw new ApplicationException("status not found"); }
             }
             catch (Exception ex)
@@ -99,7 +89,7 @@ namespace RollerDerby
             GearInventory newelbow = new GearInventory();
             if (cbxElbowSize.Text != "NA")
             {
-                
+
                 oldelbow.GearPart = "Elbow";
                 oldelbow.GearSize = cbxElbowSize.Text;
                 foreach (GearInventory gear in allGear)
@@ -109,7 +99,7 @@ namespace RollerDerby
                         oldelbow.GearCount = gear.GearCount; break;
                     }
                 }
-                
+
                 newelbow.GearPart = "Elbow";
                 newelbow.GearSize = cbxElbowSize.Text;
                 newelbow.GearCount = oldelbow.GearCount - 1;
@@ -221,7 +211,8 @@ namespace RollerDerby
 
 
                 }
-                else {
+                else
+                {
                     MessageBox.Show("updated!");
                     //this.DialogResult = true;
                 }
@@ -232,11 +223,11 @@ namespace RollerDerby
                 MessageBox.Show(ex.Message);
                 this.DialogResult = false;
             }
-            
-            
-            
-            
-            
+
+
+
+
+
 
 
         }

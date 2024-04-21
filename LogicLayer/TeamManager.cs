@@ -3,7 +3,6 @@ using DataAccessLayer;
 using DataObjects;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace LogicLayer
 {
@@ -103,3 +102,4 @@ namespace LogicLayer
         }
     }
 }
+

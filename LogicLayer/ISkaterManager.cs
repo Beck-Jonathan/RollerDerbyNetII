@@ -20,6 +20,12 @@ namespace LogicLayer
         int purgeSkater(Skater _skater);
         int unpurgeSkater(Skater _skater);
         List<string> getAllApplicationStatus();
+        List<String> RetreiveSkaterroles();
+
+        Skater getSkaterByEmail(String Email);
+
+        String FindSkater(string email);
+        String RetreiveSkaterIDFromEmail(string email);
 
 
 

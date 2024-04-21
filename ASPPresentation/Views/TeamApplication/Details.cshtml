@@ -1,0 +1,50 @@
+﻿@model DataObjects.TeamApplicationVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TeamApplicationVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SkaterID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkaterID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeamApplicationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

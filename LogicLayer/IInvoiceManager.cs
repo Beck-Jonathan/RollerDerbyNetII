@@ -6,10 +6,12 @@ namespace LogicLayer
 {
     public interface IInvoiceManager
     {
-        int addInvoice(int InvoiceID, string SkaterID, float InvoiceAmount, DateTime IssueDate);
-        Invoice getInvoiceByPrimaryKey(string InvoiceID);
+        bool addInvoice(Invoice _Invoice);
+        Invoice getInvoiceByPrimaryKey(int InvoiceID);
         List<Invoice> getAllInvoice();
-        int editInvoice(int oldInvoiceID, string oldSkaterID, float oldInvoiceAmount, DateTime oldIssueDate, int newInvoiceID, string newSkaterID, float newInvoiceAmount, DateTime newIssueDate);
-        int purgeInvoice(string InvoiceID);
+        int editInvoice(Invoice _oldInvoice, Invoice _newInvoice);
+        int purgeInvoice(Invoice _invoice);
+        int unpurgeInvoice(Invoice _invoice);
+        List<String> getDistinctSkaterForDropDown();
     }
 }

@@ -2,11 +2,8 @@
 using DataObjects;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace DataAccessLayer
 {
@@ -24,16 +21,16 @@ namespace DataAccessLayer
             // set the command type
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
-            
+
             cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@GearRequestID", SqlDbType.Int, 50);
-            
+
 
             //We need to set the parameter values
-            
+
             cmd.Parameters["@SkaterID"].Value = _gearapplication.SkaterID;
             cmd.Parameters["@GearRequestID"].Value = _gearapplication.GearReuestID;
-            
+
             try
             {
                 //open the connection 
@@ -161,22 +158,22 @@ namespace DataAccessLayer
             // we need to add parameters to the command
             cmd.Parameters.Add("@oldApplicationID", SqlDbType.Int);
             cmd.Parameters.Add("@oldSkaterID", SqlDbType.NVarChar, 50);
-            
+
             cmd.Parameters.Add("@oldGearRequestID", SqlDbType.Int, 50);
-            
+
             cmd.Parameters.Add("@oldApplicationTime", SqlDbType.DateTime);
-            
+
             cmd.Parameters.Add("@oldApplicationStatus", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@newApplicationStatus", SqlDbType.NVarChar, 50);
 
             //We need to set the parameter values
             cmd.Parameters["@oldApplicationID"].Value = _oldGearApplication.ApplicationID;
             cmd.Parameters["@oldSkaterID"].Value = _oldGearApplication.SkaterID;
-            
+
             cmd.Parameters["@oldGearRequestID"].Value = _oldGearApplication.GearReuestID;
-            
+
             cmd.Parameters["@oldApplicationTime"].Value = _oldGearApplication.ApplicationTime;
-            
+
             cmd.Parameters["@oldApplicationStatus"].Value = _oldGearApplication.ApplicationStatus;
             cmd.Parameters["@newApplicationStatus"].Value = _newGearApplication.ApplicationStatus;
             try
@@ -201,5 +198,5 @@ namespace DataAccessLayer
             return rows;
         }
     }
-    
+
 }

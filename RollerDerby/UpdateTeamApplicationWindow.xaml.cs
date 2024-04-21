@@ -1,20 +1,8 @@
-﻿using DataAccessInterfaces;
-using DataObjects;
+﻿using DataObjects;
 using LogicLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RollerDerby
 {
@@ -35,20 +23,20 @@ namespace RollerDerby
             oldskater = skaterManager.GetSkaterVMByDerbyName(_application.SkaterID);
             TAM = new TeamApplicationManager();
             InitializeComponent();
-            _sm=new SkaterManager();
+            _sm = new SkaterManager();
             tbxTeamApplicationApplicationTime.Text = application.ApplicationTime.ToString();
-            tbxTeamApplicationSkaterID.Text= application.SkaterID;
+            tbxTeamApplicationSkaterID.Text = application.SkaterID;
             tbxTeamApplicationTeamApplicationID.Text = application.TeamApplicationID.ToString();
             tbxTeamApplicationTeamName.Text = application.TeamName;
             tbxTeamApplicationApplicationTime.IsEnabled = false;
             tbxTeamApplicationSkaterID.IsEnabled = false;
             tbxTeamApplicationTeamApplicationID.IsEnabled = false;
             tbxTeamApplicationTeamName.IsEnabled = false;
-            List<string> allStatus= new List<string>();
+            List<string> allStatus = new List<string>();
             try
             {
-                allStatus=_sm.getAllApplicationStatus();
-                if (allStatus.Count ==0 ) { throw new ApplicationException(); }
+                allStatus = _sm.getAllApplicationStatus();
+                if (allStatus.Count == 0) { throw new ApplicationException(); }
             }
             catch (Exception ex)
             {
@@ -69,7 +57,7 @@ namespace RollerDerby
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void btnUpdateTeamApplication_Click(object sender, RoutedEventArgs e)
@@ -93,13 +81,13 @@ namespace RollerDerby
                 _newSkater.TeamID = _newTeamApplicaiton.TeamName;
                 _newSkater.Active = true;
                 _newSkater.Phone = oldskater.Phone;
-                
+
 
                 try
                 {
                     approveresult = TAM.editTeamApplication(application, _newTeamApplicaiton);
-                    
-                    if (approveresult == 0  ) { throw new ApplicationException(); }
+
+                    if (approveresult == 0) { throw new ApplicationException(); }
                     else { MessageBox.Show("Application Updated"); }
                 }
                 catch (Exception ex)
@@ -107,7 +95,8 @@ namespace RollerDerby
 
                     MessageBox.Show(ex.Message);
                 }
-                if (_newTeamApplicaiton.ApplicationStatus == "Approved") {
+                if (_newTeamApplicaiton.ApplicationStatus == "Approved")
+                {
                     try
                     {
                         assignresult = skaterManager.editSkater(oldskater, _newSkater);
@@ -118,8 +107,8 @@ namespace RollerDerby
 
                         MessageBox.Show(ex.Message);
                     }
-                    
-                   
+
+
                 }
             }
             else { MessageBox.Show("Please pick a status"); }

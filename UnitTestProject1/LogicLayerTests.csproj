@@ -49,8 +49,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventManagerTests.cs" />
     <Compile Include="GearApplicaitonManagerTests.cs" />
     <Compile Include="GearRequestManagerTests.cs" />
+    <Compile Include="InvocieManagerTests.cs" />
     <Compile Include="LeagueManagerTests.cs" />
     <Compile Include="LocationManagerTests.cs" />
     <Compile Include="SkaterManagerTests.cs" />

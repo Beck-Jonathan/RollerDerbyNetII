@@ -29,12 +29,12 @@ namespace DataAccessLayer
             cmd.Parameters.Add("@Zip", SqlDbType.NVarChar, 5);
 
             //We need to set the parameter values
-            cmd.Parameters["@LocationID"].Value = location.LocationId;
+            cmd.Parameters["@LocationID"].Value = location.LocationID;
             cmd.Parameters["@LeagueID"].Value = location.LeagueID;
             cmd.Parameters["@ContactPhone"].Value = location.ContactPhone;
             cmd.Parameters["@City"].Value = location.City;
             cmd.Parameters["@State"].Value = location.State;
-            cmd.Parameters["@Zip"].Value = location.ZipCode;
+            cmd.Parameters["@Zip"].Value = location.Zip;
             try
             {
                 //open the connection 
@@ -78,12 +78,12 @@ namespace DataAccessLayer
                 {
                     while (reader.Read())
                     {
-                        output.LocationId = reader.GetString(0);
+                        output.LocationID = reader.GetString(0);
                         output.LeagueID = reader.GetString(1);
                         output.ContactPhone = reader.GetString(2);
                         output.City = reader.GetString(3);
                         output.State = reader.GetString(4);
-                        output.ZipCode = reader.GetString(5);
+                        output.Zip = reader.GetString(5);
 
                     }
                 }
@@ -125,12 +125,12 @@ namespace DataAccessLayer
                     while (reader.Read())
                     {
                         var _Location = new LocationVM();
-                        _Location.LocationId = reader.GetString(0);
+                        _Location.LocationID = reader.GetString(0);
                         _Location.LeagueID = reader.GetString(1);
                         _Location.ContactPhone = reader.GetString(2);
                         _Location.City = reader.GetString(3);
                         _Location.State = reader.GetString(4);
-                        _Location.ZipCode = reader.GetString(5);
+                        _Location.Zip = reader.GetString(5);
                         output.Add(_Location);
                     }
                 }
@@ -173,7 +173,7 @@ namespace DataAccessLayer
             cmd.Parameters.Add("@newZip", SqlDbType.NVarChar, 5);
 
             //We need to set the parameter values
-            cmd.Parameters["@oldLocationID"].Value = oldLocation.LocationId;
+            cmd.Parameters["@oldLocationID"].Value = oldLocation.LocationID;
 
 
             cmd.Parameters["@oldLeagueID"].Value = oldLocation.LeagueID;
@@ -184,8 +184,8 @@ namespace DataAccessLayer
             cmd.Parameters["@newCity"].Value = newLocation.City;
             cmd.Parameters["@oldState"].Value = oldLocation.State;
             cmd.Parameters["@newState"].Value = newLocation.State;
-            cmd.Parameters["@oldZip"].Value = oldLocation.ZipCode;
-            cmd.Parameters["@newZip"].Value = newLocation.ZipCode;
+            cmd.Parameters["@oldZip"].Value = oldLocation.Zip;
+            cmd.Parameters["@newZip"].Value = newLocation.Zip;
             try
             {
                 //open the connection 

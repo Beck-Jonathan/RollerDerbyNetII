@@ -1,18 +1,8 @@
-﻿using LogicLayer;
+﻿using DataObjects;
+using LogicLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using DataObjects;
 
 
 namespace RollerDerby
@@ -27,7 +17,8 @@ namespace RollerDerby
         TeamApplicationManager TAM = null;
         List<String> TeamNames = new List<String>();
 
-        public SkaterApply() {
+        public SkaterApply()
+        {
             InitializeComponent();
             _tm = new TeamManager();
             TAM = new TeamApplicationManager();
@@ -45,12 +36,12 @@ namespace RollerDerby
             _tm = new TeamManager();
             TAM = new TeamApplicationManager();
             List<Team> allTeams = _tm.getAllTeam();
-           //fill combo box with all teams
+            //fill combo box with all teams
             foreach (Team t in allTeams)
             {
                 TeamNames.Add(t.TeamId);
             }
-            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -60,7 +51,8 @@ namespace RollerDerby
         }
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
-        {if (cbxAvailableTeams.Text != null && cbxAvailableTeams.Text != "")
+        {
+            if (cbxAvailableTeams.Text != null && cbxAvailableTeams.Text != "")
             {
                 //create new team application object in the databse
                 TeamApplication TA = new TeamApplication();
@@ -71,9 +63,11 @@ namespace RollerDerby
                 try
                 {
                     int result = 0;
-                    result= TAM.addTeamApplication( TA );
+                    result = TAM.addTeamApplication(TA);
                     if (result == 0) { throw new ApplicationException("Application Failed"); }
-                    else { MessageBox.Show("Application Added");
+                    else
+                    {
+                        MessageBox.Show("Application Added");
                         this.DialogResult = true;
                     }
                 }

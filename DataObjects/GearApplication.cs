@@ -15,6 +15,6 @@ namespace DataObjects
     {
         public Skater _skater { get; set; }
         public GearRequest _gearrequest { get; set; }
-       
+
     }
 }

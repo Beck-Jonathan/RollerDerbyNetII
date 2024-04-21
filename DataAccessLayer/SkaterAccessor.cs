@@ -10,6 +10,61 @@ namespace DataAccessLayer
 {
     public class SkaterAccessor : ISkaterAccessor
     {
+        public Skater selectSkaterByEmail(String email)
+        {
+            Skater skater = new Skater();
+            // connection
+            var conn = SqlConnectionProvider.GetConnection();
+            // command text
+            var cmdText = "sp_get_skater_name_by_Email";
+            // command
+            var cmd = new SqlCommand(cmdText, conn);
+            // command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // parameters
+            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50);
+            // parameter values
+            cmd.Parameters["@Email"].Value = email;
+            try
+            {
+                // open the connection
+                conn.Open();
+                // execute
+
+                var reader = cmd.ExecuteReader();
+                // process the results
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        skater.SkaterID = reader.GetString(0);
+                        skater.GivenName = reader.GetString(1);
+                        skater.FamilyName = reader.GetString(2);
+                        skater.Phone = reader.GetString(3);
+                        skater.Email = reader.GetString(4);
+                        skater.TeamID = reader.GetString(5);
+                        skater.Active = reader.GetBoolean(7);
+
+                        //skaterVM.Active = reader.GetBoolean(5);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("Skater not found (3)");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return skater;
+        }
+
+
         public int AuthenticateUserWithEmailAndPasswordHash(string skaterID, string passwordHash)
         {
             int rows = 0;
@@ -63,7 +118,7 @@ namespace DataAccessLayer
 
             return rows;
         }
-        
+
         public SkaterVM SelectSkaterVMByDerbyName(string derbyName)
         {
             SkaterVM skaterVM = new SkaterVM();
@@ -117,7 +172,7 @@ namespace DataAccessLayer
             }
             return skaterVM;
         }
-        
+
         public List<string> SelectRolesByDerbyName(string derbyName)
         {
             List<string> roles = new List<string>();
@@ -217,20 +272,21 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
-            
+
             cmd.Parameters.Add("@GivenName", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FamilyName", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@Phone", SqlDbType.NVarChar, 13);
+
             cmd.Parameters.Add("@email", SqlDbType.NVarChar, 250);
+            cmd.Parameters.Add("@passwordHash", SqlDbType.NVarChar, 100);
 
 
             //We need to set the parameter values
             cmd.Parameters["@SkaterID"].Value = _Skater.SkaterID;
-           
+
             cmd.Parameters["@GivenName"].Value = _Skater.GivenName;
             cmd.Parameters["@FamilyName"].Value = _Skater.FamilyName;
-            cmd.Parameters["@Phone"].Value = _Skater.Phone;
             cmd.Parameters["@email"].Value = _Skater.Email;
+            cmd.Parameters["@passwordHash"].Value = _Skater.passwordhash;
 
             try
             {
@@ -277,7 +333,7 @@ namespace DataAccessLayer
                         _Skater.TeamID = reader.GetString(1);
                         _Skater.GivenName = reader.GetString(2);
                         _Skater.FamilyName = reader.GetString(3);
-                        _Skater.Phone = reader.GetString(4);
+                        _Skater.Phone = reader.IsDBNull(4) ? "Not Provided" : reader.GetString(4);
                         _Skater.Email = reader.GetString(5);
                         //_Skater.passwordhash = reader.GetString(6);
                         _Skater.Active = reader.GetBoolean(7);
@@ -454,6 +510,43 @@ namespace DataAccessLayer
                         var _ApplicationStatus = "";
                         _ApplicationStatus = reader.GetString(0);
                         output.Add(_ApplicationStatus);
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return output;
+        }
+
+        public List<string> RetreiveSkaterRoles()
+        {
+            List<String> output = new List<String>();
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_retreive_by_all_Role";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // There are no parameters to set or add
+            try
+            {
+                //open the connection 
+                conn.Open();  //execute the command and capture result
+                var reader = cmd.ExecuteReader();
+                //process the results
+                if (reader.HasRows)
+                    while (reader.Read())
+                    {
+                        var role = "";
+                        role = reader.GetString(0);
+                        output.Add(role);
                     }
             }
             catch (Exception ex)

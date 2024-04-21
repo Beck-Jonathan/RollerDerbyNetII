@@ -76,7 +76,7 @@ namespace LogicLayer
         //this function will get the team application by PK
         public TeamApplication getTeamApplicationByPrimaryKey(int TeamApplicationID)
         {
-            TeamApplication result= null;
+            TeamApplication result = null;
             try
             {
                 result = _applicationAccessor.selectTeamApplicationByPrimaryKey(TeamApplicationID);

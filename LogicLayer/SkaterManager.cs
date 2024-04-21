@@ -1,4 +1,5 @@
-﻿using DataAccessInterfaces;
+﻿using DataAccessFakes;
+using DataAccessInterfaces;
 using DataAccessLayer;
 using DataObjects;
 using System;
@@ -25,7 +26,7 @@ namespace LogicLayer
         public SkaterManager(ISkaterAccessor skaterAccessor)
         {
             _skaterAccessor = skaterAccessor;
-            _roleAccessor = new Skater_Role_LineAccessor();
+            _roleAccessor = new Skater_Role_LineFakes();
 
         }
         public bool AuthenticateSkater(string email, string password)
@@ -163,7 +164,7 @@ namespace LogicLayer
         //this function will get all skaters
         public List<SkaterVM> getAllSkater()
         {
-            List<SkaterVM> allSkaters = null;
+            List<SkaterVM> allSkaters = new List<SkaterVM>();
             try
             {
                 allSkaters = _skaterAccessor.selectAllSkater();
@@ -252,6 +253,76 @@ namespace LogicLayer
 
 
             return result;
+        }
+
+        public List<string> RetreiveSkaterroles()
+        {
+            List<String> roles = new List<string>();
+            try
+            {
+                roles = _skaterAccessor.RetreiveSkaterRoles();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return roles;
+        }
+        public Skater getSkaterByEmail(String Email)
+        {
+            Skater skater = null;
+            try
+            {
+                skater = _skaterAccessor.selectSkaterByEmail(Email);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return skater;
+
+
+        }
+        public String FindSkater(String Email)
+        {
+            string ID = "";
+            try
+            {
+                ID = _skaterAccessor.selectSkaterByEmail(Email).SkaterID;
+            }
+            catch (ArgumentException ax)
+            {
+                if (ax.Message == "Skater not found (3)")
+                {
+                    ID = "";
+                    return ID;
+                }
+                else
+                {
+                    throw ax;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Database Error", ex);
+            }
+            return ID;
+        }
+        public string RetreiveSkaterIDFromEmail(string email)
+        {
+            try
+            {
+                return _skaterAccessor.selectSkaterByEmail(email).SkaterID;
+            }
+            catch (Exception ex)
+            {
+
+                throw new ApplicationException("Database Error", ex);
+            }
+
+
         }
     }
 }

@@ -18,5 +18,7 @@ namespace DataAccessInterfaces
         int deleteSkater(Skater _Skater);
         int undeleteSkater(Skater _Skater);
         List<String> selectAllApplicationStatus();
+        List<String> RetreiveSkaterRoles();
+        Skater selectSkaterByEmail(String email);
     }
 }

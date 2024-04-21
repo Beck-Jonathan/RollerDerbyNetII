@@ -3,10 +3,7 @@ using DataObjects;
 using LogicLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestProject1
 {
@@ -28,24 +25,26 @@ namespace UnitTestProject1
 
             //act
             _applicationmanager.addTeamApplication(new DataObjects.TeamApplication());
-            actual=_applicationmanager.getAllTeamApplication().Count(); 
+            actual = _applicationmanager.getAllTeamApplication().Count();
 
             //assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestGetAllApplicaitonsGetsAllApplicaitons() {
+        public void TestGetAllApplicaitonsGetsAllApplicaitons()
+        {
             int actual = 0;
             int expected = 3;
 
             actual = _applicationmanager.getAllTeamApplication().Count;
             Assert.AreEqual(expected, actual);
-        
-        
+
+
         }
         [TestMethod]
-        public void TestselectTeamApplicationByPrimaryKey() {
+        public void TestselectTeamApplicationByPrimaryKey()
+        {
             string actual = "";
             string expected = "malFoy";
 
@@ -56,14 +55,16 @@ namespace UnitTestProject1
 
         [TestMethod]
         [ExpectedException(typeof(ApplicationException))]
-        public void TestSelectTeamApplicationFailsWithBadKey() {
+        public void TestSelectTeamApplicationFailsWithBadKey()
+        {
             string actual = "";
             string expected = "malfoy";
             actual = actual = _applicationmanager.getTeamApplicationByPrimaryKey(105).SkaterID;
 
         }
         [TestMethod]
-        public void TestupdateTeamApplicationUpdatesAnApplication() {
+        public void TestupdateTeamApplicationUpdatesAnApplication()
+        {
             string actual = "";
             string expected = "Approved";
             TeamApplication teamApplication = new TeamApplication();
@@ -73,7 +74,7 @@ namespace UnitTestProject1
             newteamApplication.TeamApplicationID = 100;
             newteamApplication.ApplicationStatus = "Approved";
             _applicationmanager.editTeamApplication(teamApplication, newteamApplication);
-            actual=_applicationmanager.getTeamApplicationByPrimaryKey(100).ApplicationStatus;
+            actual = _applicationmanager.getTeamApplicationByPrimaryKey(100).ApplicationStatus;
             Assert.AreEqual(actual, expected);
 
 
@@ -81,7 +82,8 @@ namespace UnitTestProject1
 
         [TestMethod]
         [ExpectedException(typeof(ApplicationException))]
-        public void TestupdateTeamApplicationFailsWithBadData() {
+        public void TestupdateTeamApplicationFailsWithBadData()
+        {
             string actual = "";
             string expected = "Approved";
             TeamApplication teamApplication = new TeamApplication();
@@ -91,7 +93,7 @@ namespace UnitTestProject1
             newteamApplication.TeamApplicationID = 100;
             newteamApplication.ApplicationStatus = "Approved";
             _applicationmanager.editTeamApplication(teamApplication, newteamApplication);
-          
+
 
         }
 
@@ -99,4 +101,4 @@ namespace UnitTestProject1
 
     }
 }
-       
+

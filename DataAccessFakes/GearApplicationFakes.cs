@@ -3,8 +3,6 @@ using DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessFakes
 {
@@ -14,16 +12,16 @@ namespace DataAccessFakes
 
         public GearApplicationFakes()
         {
-            GearApplication fakeApplication1=new GearApplication();
+            GearApplication fakeApplication1 = new GearApplication();
             GearApplication fakeApplication2 = new GearApplication();
             GearApplication fakeApplication3 = new GearApplication();
             fakeApplication1.ApplicationID = 100;
             fakeApplication1.SkaterID = "malfoy";
             fakeApplication1.GearReuestID = 100;
-            fakeApplication1.ApplicationTime= DateTime.Now;
+            fakeApplication1.ApplicationTime = DateTime.Now;
             fakeApplication1.ApplicationStatus = "Pending";
             fakeApplication2.ApplicationID = 101;
-            fakeApplication2. SkaterID = "Balfoy";
+            fakeApplication2.SkaterID = "Balfoy";
             fakeApplication2.GearReuestID = 101;
             fakeApplication2.ApplicationTime = DateTime.Now;
             fakeApplication2.ApplicationStatus = "Pending";
@@ -41,7 +39,7 @@ namespace DataAccessFakes
 
 
         }
-            public int addGearApplication(GearApplication _GearApplication)
+        public int addGearApplication(GearApplication _GearApplication)
         {
             int starting = FakeApplications.Count();
             FakeApplications.Add(_GearApplication);
@@ -57,10 +55,11 @@ namespace DataAccessFakes
         public GearApplication selectGearApplicationByPrimaryKey(int GearApplicationID)
         {
             GearApplication result = null;
-            foreach  (GearApplication gearApplication in FakeApplications)
+            foreach (GearApplication gearApplication in FakeApplications)
             {
-                if (GearApplicationID == gearApplication.ApplicationID) { 
-                result = gearApplication;
+                if (GearApplicationID == gearApplication.ApplicationID)
+                {
+                    result = gearApplication;
                     break;
                 }
             }
@@ -75,11 +74,12 @@ namespace DataAccessFakes
             int result = 0;
             foreach (GearApplication gearApplication in FakeApplications)
             {
-                if (gearApplication.ApplicationID == _oldGearApplication.ApplicationID) {
+                if (gearApplication.ApplicationID == _oldGearApplication.ApplicationID)
+                {
                     gearApplication.ApplicationStatus = _newGearApplication.ApplicationStatus;
                     result = 1;
                     break;
-                
+
                 }
                 if (result == 0) { throw new ApplicationException(); }
             }
