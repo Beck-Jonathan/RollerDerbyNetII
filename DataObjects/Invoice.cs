@@ -18,7 +18,7 @@ namespace DataObjects
         [Display(Name = "IssueDate")]
         [Required(ErrorMessage = "Please select the issue date")]
         public DateTime IssueDate { set; get; }
-        [Display(Name = "is_active")]
+        [Display(Name = "Outstanding")]
         [Required(ErrorMessage = "Please select this box ")]
         public bool is_active { set; get; }
 

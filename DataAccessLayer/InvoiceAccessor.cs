@@ -29,13 +29,13 @@ create the Accessor for the Invoice table
             cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@InvoiceAmount", SqlDbType.Money);
             cmd.Parameters.Add("@IssueDate", SqlDbType.DateTime);
-            cmd.Parameters.Add("@is_active", SqlDbType.Bit);
+            
 
             //We need to set the parameter values
             cmd.Parameters["@SkaterID"].Value = _invoice.SkaterID;
             cmd.Parameters["@InvoiceAmount"].Value = _invoice.InvoiceAmount;
             cmd.Parameters["@IssueDate"].Value = _invoice.IssueDate;
-            cmd.Parameters["@is_active"].Value = _invoice.is_active;
+            
             try
             {
                 //open the connection 
@@ -143,6 +143,54 @@ create the Accessor for the Invoice table
             return output;
         }
 
+        public List<Invoice> selectInvoiceBySkater(string SkaterID) {
+
+            List<Invoice> output = new List<Invoice>();
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_retreive_by_skater_Invoice";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // we need to add parameters to the command
+            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar,50);
+
+
+            //We need to set the parameter values
+            cmd.Parameters["@SkaterID"].Value = SkaterID;
+            try
+            {
+                //open the connection 
+                conn.Open();  //execute the command and capture result
+                var reader = cmd.ExecuteReader();
+                //process the results
+                if (reader.HasRows)
+                    while (reader.Read())
+                    {
+                        var _Invoice = new Invoice();
+                        _Invoice.InvoiceID = reader.GetInt32(0);
+                        _Invoice.SkaterID = reader.GetString(1);
+                        _Invoice.InvoiceAmount = (decimal)reader.GetSqlMoney(2);
+                        _Invoice.IssueDate = reader.GetDateTime(3);
+                        _Invoice.is_active = reader.GetBoolean(4);
+                        output.Add(_Invoice);
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return output;
+
+
+
+        }
         public int updateInvoice(Invoice _oldInvoice, Invoice _newInvoice)
         {
             int rows = 0;
@@ -198,30 +246,24 @@ create the Accessor for the Invoice table
         }
         
 
-        public int deleteInvoice(Invoice _invoice)
+        public int payInvoice(Invoice _invoice)
         {
             int rows = 0;
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
-            var commandText = "sp_delete_Invoice";
+            var commandText = "sp_pay_Invoice";
             // create the command object
             var cmd = new SqlCommand(commandText, conn);
             // set the command type
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@InvoiceID", SqlDbType.Int);
-            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@InvoiceAmount", SqlDbType.Money);
-            cmd.Parameters.Add("@IssueDate", SqlDbType.DateTime);
-            cmd.Parameters.Add("@is_active", SqlDbType.Bit);
+            
 
             //We need to set the parameter values
             cmd.Parameters["@InvoiceID"].Value = _invoice.InvoiceID;
-            cmd.Parameters["@SkaterID"].Value = _invoice.SkaterID;
-            cmd.Parameters["@InvoiceAmount"].Value = _invoice.InvoiceAmount;
-            cmd.Parameters["@IssueDate"].Value = _invoice.IssueDate;
-            cmd.Parameters["@is_active"].Value = _invoice.is_active;
+            
             try
             {
                 conn.Open();
@@ -243,7 +285,7 @@ create the Accessor for the Invoice table
         }
        
 
-        public int undeleteInvoice(Invoice _invoice)
+        public int refundInvoice(Invoice _invoice)
         {
             int rows = 0;
             // start with a connection object
@@ -256,17 +298,11 @@ create the Accessor for the Invoice table
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@InvoiceID", SqlDbType.Int);
-            cmd.Parameters.Add("@SkaterID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@InvoiceAmount", SqlDbType.Money);
-            cmd.Parameters.Add("@IssueDate", SqlDbType.DateTime);
-            cmd.Parameters.Add("@is_active", SqlDbType.Bit);
+            
 
             //We need to set the parameter values
             cmd.Parameters["@InvoiceID"].Value = _invoice.InvoiceID;
-            cmd.Parameters["@SkaterID"].Value = _invoice.SkaterID;
-            cmd.Parameters["@InvoiceAmount"].Value = _invoice.InvoiceAmount;
-            cmd.Parameters["@IssueDate"].Value = _invoice.IssueDate;
-            cmd.Parameters["@is_active"].Value = _invoice.is_active;
+            
             try
             {
                 conn.Open();

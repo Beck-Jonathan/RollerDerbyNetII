@@ -175,6 +175,13 @@ namespace ASPPresentation.Controllers
                             {
                                 UserManager.AddToRole(user.Id, role);
                             }
+                            InvoiceManager _inv = new InvoiceManager();
+                            Invoice initial = new Invoice();
+                            initial.IssueDate = DateTime.Now;
+                            initial.SkaterID = model.SkaterID;
+                            initial.InvoiceAmount = 0;
+                            initial.is_active = true;
+                            bool invoice=_inv.addInvoice(initial);
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                             return RedirectToAction("Index", "Home");
                         }
@@ -211,7 +218,13 @@ namespace ASPPresentation.Controllers
                         var result = await UserManager.CreateAsync(user, model.Password);
                         if (result.Succeeded)
                         {
-                            
+                            InvoiceManager _inv = new InvoiceManager();
+                            Invoice initial = new Invoice();
+                            initial.IssueDate = DateTime.Now;
+                            initial.SkaterID= model.SkaterID;
+                            initial.InvoiceAmount = 0;
+                            initial.is_active = true;
+                            _inv.addInvoice(initial);
                             var result2 = UserManager.AddToRole(user.Id, "Fan");
                             
 
@@ -293,6 +306,13 @@ namespace ASPPresentation.Controllers
                                 UserName = model.Email,
                                 Email = model.Email
                             };
+                            InvoiceManager _inv = new InvoiceManager();
+                            Invoice initial = new Invoice();
+                            initial.IssueDate = DateTime.Now;
+                            initial.SkaterID = model.SkaterID;
+                            initial.InvoiceAmount = 0;
+                            initial.is_active = true;
+                            _inv.addInvoice(initial);
                             var result = await UserManager.CreateAsync(user, "newuser");
                             if (result.Succeeded)
                             {

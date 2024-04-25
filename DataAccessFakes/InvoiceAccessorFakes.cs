@@ -14,21 +14,51 @@ namespace DataAccessFakes
 
             public InvoiceAccessorFakes() {
             invoices = new List<Invoice>();
+            Invoice invoice1 = new Invoice();
+            invoice1.InvoiceID = 1;
+            invoice1.SkaterID = "Zelda";
+            invoice1.InvoiceAmount = 20;
+            invoice1.is_active = true;
+            invoices.Add(invoice1);
+            Invoice invoice2 = new Invoice();
+            invoice2.InvoiceID = 2;
+            invoice2.SkaterID = "Link";
+            invoice2.InvoiceAmount = 25;
+            invoice2.is_active = true;
+            invoices.Add(invoice2);
+            Invoice invoice3 = new Invoice();
+            invoice3.InvoiceID = 3;
+            invoice3.SkaterID = "Gannon";
+            invoice3.InvoiceAmount = 30;
+            invoice3.is_active = false;
+            invoices.Add(invoice3);
+            Invoice invoice10 = new Invoice();
+            invoice10.InvoiceID = 10;
+            invoice10.SkaterID = "Gannon";
+            invoice10.InvoiceAmount = 31;
+            invoice10.is_active = false;
+            invoices.Add(invoice10);
         }
         public int addInvoice(Invoice _Invoice)
         {
             int start = invoices.Count;
+            foreach (Invoice i in invoices) {
+                if (i.InvoiceID == _Invoice.InvoiceID) {
+                    return 0;
+                    
+                }
+            }
             invoices.Add(_Invoice);
             int end = invoices.Count;
             return end - start;
 
         }
 
-        public int deleteInvoice(Invoice _Invoice)
+        public int payInvoice(Invoice _Invoice)
         {
             foreach (Invoice i in invoices) {
                 if (i.InvoiceID == _Invoice.InvoiceID) {
-                    invoices.Remove(i);
+                    i.is_active = false;
                     return 1;
                 } 
             }
@@ -64,7 +94,7 @@ namespace DataAccessFakes
             return result;
         }
 
-        public int undeleteInvoice(Invoice _Invoice)
+        public int refundInvoice(Invoice _Invoice)
         {
             int result = 0;
             foreach (Invoice invoice in invoices)
@@ -96,6 +126,20 @@ namespace DataAccessFakes
             }
 
             return result;
+        }
+
+        public List<Invoice> selectInvoiceBySkater(string SkaterID)
+        {
+            List<Invoice> results = new List<Invoice>();
+            foreach (Invoice invoice in invoices)
+            {
+                if (invoice.SkaterID .Equals( SkaterID))
+                {
+                    results.Add(invoice);
+                   
+                }
+            }
+            return results;
         }
     }
     

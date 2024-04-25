@@ -37,10 +37,13 @@ Create the Logic Layer Manager for the Invoice table
             try
             {
                 result = (1 == _invoiceAccessor.addInvoice(_Invoice));
+                if (!result) {
+                    throw new ApplicationException("Invoice Not Added");
+                }
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Invoice not added" + ex.InnerException.Message, ex); ;
+                throw new ApplicationException("Invoice not added", ex); ;
             }
             return result;
         }
@@ -49,15 +52,15 @@ Create the Logic Layer Manager for the Invoice table
         Create the Logic Layer Undelete method for the Invoice table
          Created By Jonathan Beck 4/20/2024
         ***************/
-        public int purgeInvoice(Invoice invoice)
+        public int payInvoice(Invoice invoice)
         {
             int result = 0;
             try
             {
-                result = _invoiceAccessor.deleteInvoice(invoice);
+                result = _invoiceAccessor.payInvoice(invoice);
                 if (result == 0)
                 {
-                    throw new ApplicationException("Unable to Delete Invoice");
+                    throw new ApplicationException("Unable to Mark Invoice as paid.");
                 }
             }
             catch (Exception ex)
@@ -70,15 +73,15 @@ Create the Logic Layer Manager for the Invoice table
         Create the Logic Layer Undelete method for the Invoice table
          Created By Jonathan Beck 4/20/2024
         ***************/
-        public int unpurgeInvoice(Invoice invoice)
+        public int refundInvoice(Invoice invoice)
         {
             int result = 0;
             try
             {
-                result = _invoiceAccessor.undeleteInvoice(invoice);
+                result = _invoiceAccessor.refundInvoice(invoice);
                 if (result == 0)
                 {
-                    throw new ApplicationException("Unable to restore Invoice");
+                    throw new ApplicationException("Unable to refund Invoice");
                 }
             }
             catch (Exception ex)
@@ -97,14 +100,14 @@ Create the Logic Layer Manager for the Invoice table
             try
             {
                 result = _invoiceAccessor.selectInvoiceByPrimaryKey(InvoiceID);
-                if (result == null)
+                if (result.InvoiceID == 0)
                 {
                     throw new ApplicationException("Unable to retreive Invoice");
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ApplicationException("Unable to retreive Invoice",ex); ;
             }
             return result;
         }
@@ -125,7 +128,25 @@ Create the Logic Layer Manager for the Invoice table
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ApplicationException("Unable To Retrive Invoices",ex);
+            }
+            return result;
+        }
+
+        public List<Invoice> getInvoiceBySkater(string SkaterID)
+        {
+            List<Invoice> result = new List<Invoice>();
+            try
+            {
+                result = _invoiceAccessor.selectInvoiceBySkater(SkaterID);
+                if (result.Count == 0)
+                {
+                    throw new ApplicationException("Unable to retreive Invoices");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Unable To Retrive Invoices", ex);
             }
             return result;
         }
@@ -153,7 +174,33 @@ Create the Logic Layer Manager for the Invoice table
 
         public List<string> getDistinctSkaterForDropDown()
         {
-            throw new NotImplementedException();
+            List<String> results = new List<string> ();
+            try
+            {
+                results = _invoiceAccessor.selectDistinctSkaterForDropDown();
+            }
+            catch (Exception ex)
+            {
+
+                throw new ApplicationException("unable to retreive skaters",ex);
+            }
+
+
+            return results;
+        }
+        /******************
+        Create the Logic Layeradd multiple invoices method for the Invoice table
+         Created By Jonathan Beck 4/20/2024
+        ***************/
+        public int addMultipleInvoices(List<Invoice> invoices)
+        {
+            int result = 0;
+            foreach (Invoice i in invoices)
+            {
+                if (addInvoice(i)) result++;
+            }
+            return result;
+
         }
     }
 

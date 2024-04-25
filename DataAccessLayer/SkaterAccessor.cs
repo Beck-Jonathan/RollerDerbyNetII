@@ -40,7 +40,7 @@ namespace DataAccessLayer
                         skater.SkaterID = reader.GetString(0);
                         skater.GivenName = reader.GetString(1);
                         skater.FamilyName = reader.GetString(2);
-                        skater.Phone = reader.GetString(3);
+                        skater.Phone = reader.IsDBNull(3) ? "" : reader.GetString(3);
                         skater.Email = reader.GetString(4);
                         skater.TeamID = reader.GetString(5);
                         skater.Active = reader.GetBoolean(7);
