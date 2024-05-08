@@ -27,7 +27,7 @@ namespace LogicLayer
         String FindSkater(string email);
         String RetreiveSkaterIDFromEmail(string email);
 
-
+        List<String> SelectDistinctTeamsForDropDown();
 
     }
 }

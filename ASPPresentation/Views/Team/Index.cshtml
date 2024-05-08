@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.TeamId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.LeagueID)
         </th>
         <th>
@@ -35,6 +38,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.TeamId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.LeagueID)
         </td>
         <td>
@@ -53,9 +59,14 @@
             @Html.DisplayFor(modelItem => item.isActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TeamId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TeamId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TeamId })
+            @Html.ActionLink("Details", "Details", new { id = item.TeamId })
+
+            @if (User.IsInRole("Team_Admin") || User.IsInRole("League_Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.TeamId })
+            }
+
+
         </td>
     </tr>
 }

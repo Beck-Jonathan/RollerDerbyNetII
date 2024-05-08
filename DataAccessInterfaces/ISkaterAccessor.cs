@@ -20,5 +20,7 @@ namespace DataAccessInterfaces
         List<String> selectAllApplicationStatus();
         List<String> RetreiveSkaterRoles();
         Skater selectSkaterByEmail(String email);
+
+        List<String> selectDistinctTeamForDropDown();
     }
 }

@@ -10,7 +10,7 @@ namespace ASPPresentation.Controllers
     public class TeamApplicationController : Controller
     {
 
-        TeamApplicationManager teamApplicationManager = new TeamApplicationManager();
+        ITeamApplicationManager teamApplicationManager = new TeamApplicationManager();
         // GET: TeamApplication
         public ActionResult Index()
         {

@@ -11,13 +11,13 @@
 
     <div class="row">
         <section class="col-md-3" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">View our Teams</h2>
+            <h2 id="gettingStartedTitle">View our Skaters</h2>
             <div class="row">
                 <div class="col-md-10">
                     <img class="img-fluid" src="~/images/Skating.png"><br />
                 </div>
             </div>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <p> @Html.ActionLink("Skaters", "index", "Skater") Learn more &raquo;</a></p>
         </section>
         <section class="col-md-3" aria-labelledby="librariesTitle">
             <h2 id="librariesTitle">Pay Your dues</h2>
@@ -26,17 +26,17 @@
                     <img class="img-fluid" src="~/images/Money.png"><br />
                 </div>
             </div>
-            <p><a class="btn btn-outline-dark" @Html.ActionLink("Invoices", "index", "Invoice") ">Learn more &raquo;</a></p>
+            <p> @Html.ActionLink("Invoices", "index", "Invoice") Learn more &raquo;</a></p>
         </section>
         <section class="col-md-3" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Borrow Gear</h2>
+            <h2 id="hostingTitle">View Our Locations</h2>
 
             <div class="row">
                 <div class="col-md-10">
                     <img class="img-fluid" src="~/images/Gear.png"><br />
                 </div>
             </div>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            <p> @Html.ActionLink("Locaitons", "index", "location") Learn more &raquo;</a></p>
         </section>
         <section class="col-md-3" aria-labelledby="hostingTitle">
             <h2 id="hostingTitle">Events</h2>

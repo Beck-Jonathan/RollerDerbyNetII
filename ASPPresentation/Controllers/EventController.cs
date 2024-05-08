@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASPPresentation.Migrations;
 using DataObjects;
 using LogicLayer;
 
@@ -10,7 +11,7 @@ namespace ASPPresentation.Controllers
 {
     public class EventController : Controller
     {
-        EventManager _eventManager;
+        IEventManager _eventManager;
         // GET: Event
         public ActionResult Index()
         {
@@ -18,7 +19,7 @@ namespace ASPPresentation.Controllers
             List<Event> allEvents = new List<Event>();
             _eventManager = new EventManager();
 
-            if (User.IsInRole("Coach"))
+            if (User.IsInRole("Skater") || User.IsInRole("Team_Admin")|| User.IsInRole("League_Admin"))
             {
                 mode = 1;
             }
@@ -99,48 +100,101 @@ namespace ASPPresentation.Controllers
         public ActionResult Edit(int id)
         {
             fillDropDowns();
-            return View();
+            _eventManager = new EventManager();
+            Event _event = null;
+            try
+            {
+                _event = _eventManager.getEventByPrimaryKey(id);
+                Session.Add("oldEvent", _event);
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                return View("Error");
+            }
+            return View(_event);
         }
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Event _newevent)
         {
             fillDropDowns();
+            _eventManager = new EventManager();
+            Event _old = (Event)Session["oldEvent"];
+            _newevent.EventID = id;
             try
             {
-                // TODO: Add update logic here
+                if (_old != null &&ModelState.IsValid)
+                {
+                    _eventManager.updateEvent(_old, _newevent);
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                return View("Error");
             }
+
         }
 
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
             fillDropDowns();
-            return View();
+            _eventManager = new EventManager();
+            Event _event = null;
+            
+            
+                try
+                {
+                   _event= _eventManager.getEventByPrimaryKey(id);
+                Session.Add("oldEvent", _event);
+                if (_event == null) 
+                {
+                    throw new ApplicationException("Event not found");
+
+                }
+                    
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = ex.Message;
+                    ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                    return View("Error");
+                }
+            
+            return View(_event);
         }
 
         // POST: Event/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Event _event)
         {
             fillDropDowns();
-            try
-            {
-                // TODO: Add delete logic here
+            _eventManager = new EventManager();
+            _event = (Event)Session["oldEvent"];
+            _event.EventID = id;
+            
+                try
+                {
+                    _eventManager.purgeEvent(_event);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = ex.Message;
+                    ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                    return View("Error");
+                }
+            
+            return View(_event);
         }
 
         private void fillDropDowns()
@@ -148,6 +202,7 @@ namespace ASPPresentation.Controllers
             try
             {
                 ViewBag.LocatonList = _eventManager.getDistinctLocationForDropDown();
+                ViewBag.TypeList = new List<String> {"Game","Practice","Mixer" };
             }
             catch (Exception)
             {

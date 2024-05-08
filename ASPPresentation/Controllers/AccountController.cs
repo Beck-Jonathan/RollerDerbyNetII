@@ -206,7 +206,8 @@ namespace ASPPresentation.Controllers
                         };
                         sm.addSkater(skater);
                         var usrmgr = new LogicLayer.Skater_Role_LineManager();
-                        usrmgr.addSkater_Role_Line("Fan", skater.SkaterID); 
+                        usrmgr.addSkater_Role_Line("Fan", skater.SkaterID);
+                        usrmgr.deleteSkater_Role_Line("Skater", skaterId);
                         var user = new ApplicationUser
                         {
                             UserName = model.Email,
@@ -226,7 +227,9 @@ namespace ASPPresentation.Controllers
                             initial.is_active = true;
                             _inv.addInvoice(initial);
                             var result2 = UserManager.AddToRole(user.Id, "Fan");
-                            
+                            Skater_Role_LineManager usrMgr = new Skater_Role_LineManager();
+                            usrMgr.deleteSkater_Role_Line("Skater", user.SkaterID);
+
 
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

@@ -11,7 +11,7 @@ namespace ASPPresentation.Controllers
 {
     public class InvoiceController : Controller
     {
-        InvoiceManager _invoiceManager;
+        IInvoiceManager _invoiceManager;
         // GET: Invoice
         [Authorize]
         public ActionResult Index()
@@ -25,7 +25,7 @@ namespace ASPPresentation.Controllers
             List<Invoice> invoices = new List<Invoice>();
             try
             {
-                fillDropDowns(_invoiceManager);
+                fillDropDowns();
                 if (mode != 1)
                 {
                     invoices = _invoiceManager.getAllInvoice();
@@ -56,7 +56,7 @@ namespace ASPPresentation.Controllers
         {
             _invoiceManager = new InvoiceManager();
             List<Invoice> invoices;
-            fillDropDowns(_invoiceManager);
+            fillDropDowns();
 
             SkaterManager skaterManager = new SkaterManager();
 
@@ -93,7 +93,7 @@ namespace ASPPresentation.Controllers
         public ActionResult Create()
         {
             _invoiceManager = new InvoiceManager();
-            fillDropDowns(_invoiceManager);
+            fillDropDowns();
             return View();
         }
 
@@ -121,6 +121,25 @@ namespace ASPPresentation.Controllers
             }
         }
 
+        // GET: Invoice/Pay/5
+        public ActionResult Pay(int id)
+        {
+            Invoice invoice = new Invoice();
+            _invoiceManager = new InvoiceManager();
+            try
+            {
+                invoice = _invoiceManager.getInvoiceByPrimaryKey(id);
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+
+            return View(invoice);
+        }
+
         // GET: Invoice/Edit/5
         public ActionResult Edit(int id)
         {
@@ -137,6 +156,30 @@ namespace ASPPresentation.Controllers
                 return View("Error");
             }
             
+            return View(invoice);
+        }
+
+        // Post: Invoice/Pay/5
+        [HttpPost]
+        public ActionResult Pay(int id, Invoice invoice)
+        {
+            int result = 0;
+            invoice.InvoiceID = id;
+            _invoiceManager = new InvoiceManager();
+            try
+            {
+                result= _invoiceManager.payInvoice(invoice);
+                if (result == 1) {
+                    RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+
             return View(invoice);
         }
 
@@ -179,7 +222,7 @@ namespace ASPPresentation.Controllers
         }
 
 
-        private void fillDropDowns(InvoiceManager _invoiceManager)
+        private void fillDropDowns()
         {
             List<String> allSkaters = new List<String>();
             allSkaters = _invoiceManager.getDistinctSkaterForDropDown();

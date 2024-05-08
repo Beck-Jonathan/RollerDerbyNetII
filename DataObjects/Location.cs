@@ -4,17 +4,17 @@ namespace DataObjects
 {
     public class Location
     {
-        [Display(Name = "LocationID")]
+        [Display(Name = "Location")]
         [Required(ErrorMessage = "Please enter a locaiton id ")]
         [StringLength(100)]
         public string LocationID { set; get; }
-        [Display(Name = "LeagueID")]
+        [Display(Name = "League")]
         [Required(ErrorMessage = "Please select a league ")]
         [StringLength(100)]
         public string LeagueID { set; get; }
-        [Display(Name = "ContactPhone")]
-        [Required(ErrorMessage = "Please enter Contact Phone e.g.(123)123-1234 ")]
-        [StringLength(11)]
+        [Display(Name = "Contact Phone (ex (123) 123-1234)")]
+        [Required(ErrorMessage = "Please enter the phone number (ex (123) 123-1234)")]
+        [StringLength(14)]
         public string ContactPhone { set; get; }
         [Display(Name = "City")]
         [Required(ErrorMessage = "Please enter City ")]

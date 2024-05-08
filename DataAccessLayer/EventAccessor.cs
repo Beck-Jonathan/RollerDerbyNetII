@@ -105,7 +105,7 @@ create the Accessor for the Event table
             // start with a connection object
             var conn = SqlConnectionProvider.GetConnection();
             // set the command text
-            var commandText = "sp_retreive_by_all_Event";
+            var commandText = "sp_retreive_by_active_Event";
             // create the command object
             var cmd = new SqlCommand(commandText, conn);
             // set the command type
@@ -152,6 +152,7 @@ create the Accessor for the Event table
             cmd.CommandType = CommandType.StoredProcedure;
             // we need to add parameters to the command
             cmd.Parameters.Add("@oldEventID", SqlDbType.Int);
+            cmd.Parameters.Add("@newEventID", SqlDbType.Int);
             cmd.Parameters.Add("@oldLocationID", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@newLocationID", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@oldEventType", SqlDbType.NVarChar, 100);
@@ -161,6 +162,7 @@ create the Accessor for the Event table
 
             //We need to set the parameter values
             cmd.Parameters["@oldEventID"].Value = _oldEvent.EventID;
+            cmd.Parameters["@newEventID"].Value = _oldEvent.EventID;
             cmd.Parameters["@oldLocationID"].Value = _oldEvent.LocationID;
             cmd.Parameters["@newLocationID"].Value = _newEvent.LocationID;
             cmd.Parameters["@oldEventType"].Value = _oldEvent.EventType;

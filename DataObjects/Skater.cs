@@ -5,27 +5,27 @@ namespace DataObjects
 {
     public class Skater
     {
-        [Display(Name = "SkaterID")]
+        [Display(Name = "Derby Name")]
         [Required(ErrorMessage = "Please enter your derby name ")]
         [StringLength(50)]
         public string SkaterID { set; get; }
-        [Display(Name = "TeamID")]
+        [Display(Name = "Associated Team")]
         [Required(ErrorMessage = "Please select a team ")]
         [StringLength(50)]
         public string TeamID { set; get; }
-        [Display(Name = "GivenName")]
+        [Display(Name = "First Name")]
         [Required(ErrorMessage = "Please enter youro first name ")]
         [StringLength(50)]
         public string GivenName { set; get; }
-        [Display(Name = "FamilyName")]
+        [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Please enter your family name ")]
         [StringLength(50)]
         public string FamilyName { set; get; }
-        [Display(Name = "Phone")]
-        [Required(ErrorMessage = "Please enter your phone number (ex (123)123-1234 ")]
-        [StringLength(11)]
+        [Display(Name = "Phone (xxx) xxx-xxxx")]
+        [Required(ErrorMessage = "Please enter your phone number (ex (123) 123-1234")]
+        [StringLength(14)]
         public string Phone { set; get; }
-        [Display(Name = "email")]
+        [Display(Name = "e-mail")]
         [Required(ErrorMessage = "Please enter your email ")]
         [StringLength(250)]
         public string Email { set; get; }

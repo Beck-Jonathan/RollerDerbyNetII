@@ -53,9 +53,12 @@
             @Html.DisplayFor(modelItem => item.Zip)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) |
             @Html.ActionLink("Details", "Details", new { id = item.LocationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
+            @if (User.IsInRole("Team_Admin") || User.IsInRole("League_Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.LocationID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
+            }
         </td>
     </tr>
 }

@@ -7,7 +7,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("Team_Admin") || User.IsInRole("League_Admin")) {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -35,9 +37,20 @@
             @Html.DisplayFor(modelItem => item.DateTime)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
+           
+
+
+
+                @Html.ActionLink("Details", "Details", new { id = item.EventID })
+
+            
+            @if (User.IsInRole("Team_Admin") || User.IsInRole("League_Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventID })  
+             @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
+            }
+
+
         </td>
     </tr>
 }

@@ -324,5 +324,26 @@ namespace LogicLayer
 
 
         }
+
+        public List<String> SelectDistinctTeamsForDropDown()
+        {
+            List<String> results = null;
+            try
+            {
+                results = _skaterAccessor.selectDistinctTeamForDropDown();
+                if (results.Count == 0)
+                {
+                    throw new ApplicationException("Unable to load teams");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new ApplicationException("Could not load teams", ex);
+            }
+            return results;
+
+        }
     }
 }
+

@@ -149,7 +149,7 @@ namespace DataAccessLayer
                         skaterVM.SkaterID = reader.GetString(0);
                         skaterVM.GivenName = reader.GetString(1);
                         skaterVM.FamilyName = reader.GetString(2);
-                        skaterVM.Phone = reader.GetString(3);
+                        skaterVM.Phone = reader.IsDBNull(3) ? "" :  reader.GetString(3);
                         skaterVM.Email = reader.GetString(4);
                         skaterVM.TeamID = reader.GetString(5);
                         skaterVM.Active = reader.GetBoolean(7);
@@ -547,6 +547,42 @@ namespace DataAccessLayer
                         var role = "";
                         role = reader.GetString(0);
                         output.Add(role);
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return output;
+        }
+
+        public List<String> selectDistinctTeamForDropDown()
+        {
+            List<String> output = new List<String>();
+            // start with a connection object
+            var conn = SqlConnectionProvider.GetConnection();
+            // set the command text
+            var commandText = "sp_select_distinct_and_active_Teamfor_dropdown";
+            // create the command object
+            var cmd = new SqlCommand(commandText, conn);
+            // set the command type
+            cmd.CommandType = CommandType.StoredProcedure;
+            // There are no parameters to set or add
+            try
+            {
+                //open the connection 
+                conn.Open();  //execute the command and capture result
+                var reader = cmd.ExecuteReader();
+                //process the results
+                if (reader.HasRows)
+                    while (reader.Read())
+                    {
+                        String _Team = reader.GetString(0);
+                        output.Add(_Team);
                     }
             }
             catch (Exception ex)

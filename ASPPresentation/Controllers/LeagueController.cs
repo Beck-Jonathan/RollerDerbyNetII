@@ -9,7 +9,7 @@ namespace ASPPresentation.Controllers
     [Authorize(Roles = "League_Admin")]
     public class LeagueController : Controller
     {
-        LeagueManager lm = new LeagueManager();
+        ILeagueManager lm = new LeagueManager();
         // GET: League
         [AllowAnonymous]
         public ActionResult Index()

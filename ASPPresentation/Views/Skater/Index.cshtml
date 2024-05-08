@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Skaters</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    
 </p>
 <table class="table">
     <tr>
@@ -29,7 +29,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Active)
         </th>
+        @if (User.IsInRole("Skater") ||  User.IsInRole("Team_Admin") || (User.IsInRole("League_Admin")))
+        {
         <th></th>
+        }
+
+
     </tr>
 
 @foreach (var item in Model) {
@@ -52,12 +57,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.Active)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SkaterID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SkaterID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SkaterID })
-        </td>
+        @if (User.IsInRole("Skater") || User.IsInRole("Team_Admin") || (User.IsInRole("League_Admin")))
+        {
+            <td>
+                }
+                @if (User.IsInRole("Skater") || User.IsInRole("Team_Admin") || (User.IsInRole("League_Admin"))) {
+                    @Html.ActionLink("Details", "Details", new { id = item.SkaterID })
+                }
+                @if (User.IsInRole("Team_Admin") || (User.IsInRole("League_Admin")))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SkaterID })
+                }
+                
+            </td>
+        }
     </tr>
-}
+
+        }
 
 </table>

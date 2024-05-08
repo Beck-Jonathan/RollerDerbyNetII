@@ -82,6 +82,11 @@ namespace DataAccessFakes
             }
         }
 
+        public List<string> getLeaguesForDropDown()
+        {
+            return new List<String>() { "a", "b" };
+        }
+
         public List<LocationVM> SelectAllLocations()
         {
             return fakelocations;

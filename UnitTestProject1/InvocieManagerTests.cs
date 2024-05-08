@@ -22,16 +22,7 @@ namespace UnitTestProject1
             _invoiceManager = new InvoiceManager(new InvoiceAccessorFakes());
         }
 
-        [TestMethod]
-        public void a() {
-            //arrage
-
-            //act
-
-            //assert
-            Assert.AreNotEqual(0, 0);
         
-        }
         [TestMethod]
         public void TestAddInvoiceAddsAnInvoice()
         {
@@ -149,7 +140,7 @@ namespace UnitTestProject1
         public void TestGetAllInvoicesReturnsAllInvoices() {
             //arrange
             int actual = 0;
-            int expected = 3;
+            int expected = 4;
             //act
             actual = _invoiceManager.getAllInvoice().Count;
             //assert

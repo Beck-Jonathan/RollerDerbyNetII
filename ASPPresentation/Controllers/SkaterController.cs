@@ -9,9 +9,10 @@ namespace ASPPresentation.Controllers
     [Authorize]
     public class SkaterController : Controller
     {
-        SkaterManager skaterManager;
+        ISkaterManager skaterManager;
 
         // GET: Skater
+        [AllowAnonymous]
         public ActionResult Index()
         {
             skaterManager = new SkaterManager();
@@ -23,12 +24,14 @@ namespace ASPPresentation.Controllers
             catch (Exception ex)
             {
 
-                throw ex;
+                ViewBag.Error = ex.Message;
+                return View("Error");
             }
 
             return View(skaters);
         }
 
+        [Authorize(Roles = "Skater,Team_admin,League_Admin")]
         // GET: Skater/Details/5
         public ActionResult Details(String id)
         {
@@ -36,28 +39,38 @@ namespace ASPPresentation.Controllers
             skaterManager = new SkaterManager();
             try
             {
-                passed = skaterManager.GetSkaterVMByDerbyName("BloodSoak");
+                passed = skaterManager.GetSkaterVMByDerbyName(id);
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                ViewBag.Error = ex.Message;
+                return View("Error");
             }
 
             return View(passed);
         }
 
         // GET: Skater/Create
-        [Authorize(Roles = "Coach,Team_admin,League_Admin")]
+        [Authorize(Roles = "Administrator,Team_admin,League_Admin")]
         public ActionResult Create()
         {
+            try
+            {
+                fillDropDowns();
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.Error = ex.Message;
+                return View("Error");
+            }
 
             return View();
         }
 
         // POST: Skater/Create
         [HttpPost]
-        [Authorize(Roles = "Coach,Team_admin,League_Admin")]
+        [Authorize(Roles = "Administrator,Team_admin,League_Admin")]
         public ActionResult Create(SkaterVM skater)
 
         {
@@ -88,32 +101,35 @@ namespace ASPPresentation.Controllers
         }
 
         // GET: Skater/Edit/5
-        [Authorize(Roles = "Coach,Team_admin,League_Admin")]
+        [Authorize(Roles = "Administrator,Team_admin,League_Admin")]
         public ActionResult Edit(string id)
         {
             SkaterVM skater;
             SkaterManager manager = new SkaterManager();
             try
             {
+                fillDropDowns();
                 skater = manager.GetSkaterVMByDerbyName(id);
                 Session.Add("oldSkater", skater);
             }
             catch (Exception ex)
             {
 
-                throw ex;
+                ViewBag.Error = ex.Message;
+                return View("Error");
             }
             return View(skater);
         }
 
         // POST: Skater/Edit/5
         [HttpPost]
-        [Authorize(Roles = "Coach,Team_admin,League_Admin")]
+        [Authorize(Roles = "Administrator,Team_admin,League_Admin")]
         public ActionResult Edit(string id, Skater newSkater)
         {
             SkaterManager sm = new SkaterManager();
             try
             {
+                fillDropDowns();
                 Skater oldSkater = (Skater)Session["oldSkater"];
                 if (oldSkater != null)
                 {
@@ -127,7 +143,7 @@ namespace ASPPresentation.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Administrator,League_Admin")]
         // GET: Skater/Delete/5
         public ActionResult Delete(string id)
         {
@@ -136,7 +152,7 @@ namespace ASPPresentation.Controllers
 
         // POST: Skater/Delete/5
         [HttpPost]
-        [Authorize(Roles = "Coach,Team_admin,League_Admin")]
+        [Authorize(Roles = "Administrator,League_Admin")]
         public ActionResult Delete(string id, SkaterVM deleteSkater)
         {
             SkaterManager sm = new SkaterManager();
@@ -150,6 +166,20 @@ namespace ASPPresentation.Controllers
             {
                 return View();
             }
+        }
+
+        private void fillDropDowns() {
+            skaterManager = new SkaterManager();
+            try
+            {
+                ViewBag.Teams = skaterManager.SelectDistinctTeamsForDropDown();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        
         }
     }
 }

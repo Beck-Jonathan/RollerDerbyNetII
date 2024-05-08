@@ -337,11 +337,16 @@
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Error.cshtml" />
     <Content Include="Views\Invoice\Error.cshtml" />
-    <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Details.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\Skater\Error.cshtml" />
     <Content Include="Views\Invoice\Pay.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Location\Error.cshtml" />
+    <Content Include="Views\Team\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

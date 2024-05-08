@@ -13,6 +13,7 @@ namespace LogicLayer
         bool AddLocation(Location location);
         int updateLocation(Location oldLocation, Location newLocaiton);
         int deleteLocation(string LocationID);
+        List<String> getLeaguesForDropDown();
     }
 }
 

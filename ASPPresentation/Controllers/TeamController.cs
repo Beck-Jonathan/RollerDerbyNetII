@@ -10,11 +10,12 @@ namespace ASPPresentation.Controllers
     [Authorize(Roles = "League_Admin")]
     public class TeamController : Controller
     {
+        ITeamManager tm;
         // GET: Team
         [AllowAnonymous]
         public ActionResult Index()
         {
-            TeamManager tm = new TeamManager();
+            tm = new TeamManager();
             List<Team> teams = new List<Team>();
             teams = tm.getAllTeam();
 
@@ -25,8 +26,18 @@ namespace ASPPresentation.Controllers
         // GET: Team/Details/5
         public ActionResult Details(string id)
         {
-            TeamManager tm = new TeamManager();
-            Team team = tm.getTeamByPrimaryKey(id);
+            tm = new TeamManager();
+            Team team;
+            try
+            {
+                 team = tm.getTeamByPrimaryKey(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
             return View(team);
         }
 
@@ -34,6 +45,7 @@ namespace ASPPresentation.Controllers
         [Authorize(Roles = "League_Admin")]
         public ActionResult Create()
         {
+            dropdowns();
             return View();
         }
 
@@ -42,11 +54,12 @@ namespace ASPPresentation.Controllers
         [Authorize(Roles = "League_Admin")]
         public ActionResult Create(Team team)
         {
+            dropdowns();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    TeamManager tm = new TeamManager();
+                    tm = new TeamManager();
                     bool result = tm.addTeam(team);
                     if (!result)
                     {
@@ -56,9 +69,12 @@ namespace ASPPresentation.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                return View("Error");
+
             }
         }
 
@@ -66,16 +82,19 @@ namespace ASPPresentation.Controllers
         [Authorize(Roles = "League_Admin")]
         public ActionResult Edit(string id)
         {
+            dropdowns();
             Team team = null;
             try
             {
-                TeamManager tm = new TeamManager();
+                tm = new TeamManager();
                 team = tm.getTeamByPrimaryKey(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                return View("Error");
 
-                throw;
             }
             return View(team);
         }
@@ -85,9 +104,10 @@ namespace ASPPresentation.Controllers
         [Authorize(Roles = "League_Admin")]
         public ActionResult Edit(string id, Team team)
         {
+            dropdowns();
             try
             {
-                TeamManager tm = new TeamManager();
+                tm = new TeamManager();
                 Team old = tm.getTeamByPrimaryKey(id);
                 Team updated = team;
                 int result = tm.editTeam(old, updated);
@@ -95,9 +115,12 @@ namespace ASPPresentation.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                return View("Error");
+
             }
         }
 
@@ -105,6 +128,7 @@ namespace ASPPresentation.Controllers
         [Authorize(Roles = "League_Admin")]
         public ActionResult Delete(int id)
         {
+            dropdowns();
             return View();
         }
 
@@ -113,16 +137,27 @@ namespace ASPPresentation.Controllers
         [Authorize(Roles = "League_Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            dropdowns();
             try
             {
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.InnerErrorMessage = ex.InnerException.Message;
+                return View("Error");
+
             }
+        }
+
+        public void dropdowns() {
+            LocationManager locationManager = new LocationManager();
+            List<string> Leagues = locationManager.getLeaguesForDropDown();
+            ViewBag.LeagueList = Leagues;
+
         }
     }
 }

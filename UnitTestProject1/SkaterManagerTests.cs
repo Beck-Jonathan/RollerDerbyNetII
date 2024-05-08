@@ -282,6 +282,17 @@ namespace UnitTestProject1
 
         }
 
+        [TestMethod]
+        public void TestREtreiveDistinctTeamsRetreivesTEams() {
+            int actual = 0;
+            int expected = 2;
+
+            actual = _skaterManager.SelectDistinctTeamsForDropDown().Count;
+
+            Assert.AreEqual (expected, actual);
+        
+        }
+
 
     }
 }

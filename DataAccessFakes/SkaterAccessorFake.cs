@@ -14,6 +14,7 @@ namespace DataAccessFakes
         private List<Skater> deletedSkaters = new List<Skater>();
         private List<String> status = new List<string>();
         List<string> roles = new List<string>();    
+        List<string> teams = new List<string>();
 
         public SkaterAccessorFake()
         {
@@ -60,6 +61,9 @@ namespace DataAccessFakes
 
             fakeSkaters[0].Roles.Add("TestRole1");
             fakeSkaters[0].Roles.Add("TestRole2");
+
+            teams.Add("Hawks");
+            teams.Add("Capitols");
         }
 
         public int AuthenticateUserWithEmailAndPasswordHash(string email, string passwordHash)
@@ -244,6 +248,11 @@ namespace DataAccessFakes
 
 
             return result;
+        }
+
+        public List<string> selectDistinctTeamForDropDown()
+        {
+            return teams;
         }
     }
 }

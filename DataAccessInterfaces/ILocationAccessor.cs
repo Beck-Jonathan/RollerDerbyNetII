@@ -13,6 +13,7 @@ namespace DataAccessInterfaces
         int AddLocation(Location location);
         int updateLocation(Location oldLocation, Location newLocation);
         int deleteLocation(string LocationID);
+        List<String> getLeaguesForDropDown();
 
 
     }

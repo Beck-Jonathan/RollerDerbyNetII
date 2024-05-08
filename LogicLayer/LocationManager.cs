@@ -3,6 +3,7 @@ using DataAccessLayer;
 using DataObjects;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 namespace LogicLayer
 {
@@ -108,6 +109,21 @@ namespace LogicLayer
             }
             return result;
         }
+        public List<String> getLeaguesForDropDown() { 
+        List<String> result = new List<String>();
+            try
+            {
+               result= _locationAccessor.getLeaguesForDropDown();
+            }
+            catch (Exception ex)
+            {
+
+                throw new ApplicationException("unable to find leagues", ex);
+         
+            }
+            return result;
+        }
+        
     }
 }
 
