@@ -10,8 +10,10 @@
 
 @using (Html.BeginForm())
 {<div class="form-horizontal">
-        <h4>Skater</h4>
+    <h4>Skater</h4>
 
+    
+    
         <div class="form-group">
 
             <div class="col-md-10">
@@ -21,12 +23,13 @@
         )
 
             </div>
-
+            }
         </div>
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Filter" class="btn btn-default" />
         </div>
     </div>
+        
 }
 
 <p> @if (User.IsInRole("Team_Admin") || User.IsInRole("League_Admin")) {
